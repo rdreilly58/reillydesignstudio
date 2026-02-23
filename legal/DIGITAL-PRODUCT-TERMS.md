@@ -41,7 +41,7 @@ For use cases not covered by the standard license (e.g., resale as part of a tem
 - The file is corrupted and Studio cannot provide a working replacement within 5 business days
 - The product is materially different from its description
 
-If you experience a technical issue with your download, contact [your email] within **7 days of purchase** and Studio will make it right.
+If you experience a technical issue with your download, contact robert.reilly@reillydesignstudio.com within **7 days of purchase** and Studio will make it right.
 
 ---
 
@@ -62,7 +62,7 @@ File formats are listed in each product description. Studio is not responsible f
 
 Studio provides **30 days of support** after purchase for questions about using the product as intended. Support does not include custom modifications, training, or troubleshooting your own design software.
 
-Contact: [your email] with your order number in the subject line.
+Contact: robert.reilly@reillydesignstudio.com with your order number in the subject line.
 
 ---
 
@@ -100,7 +100,7 @@ Questions about these Terms or your purchase:
 
 **Reilly Design Studio LLC**
 Reston, Virginia
-[your email]
+robert.reilly@reillydesignstudio.com
 reillydesignstudio.com
 
 ---

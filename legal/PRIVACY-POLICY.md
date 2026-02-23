@@ -78,7 +78,7 @@ You have the right to:
 - Request deletion of your data (subject to legal retention requirements)
 - Opt out of marketing emails at any time
 
-To exercise these rights, email [your email].
+To exercise these rights, email robert.reilly@reillydesignstudio.com.
 
 ---
 
@@ -104,5 +104,5 @@ We may update this policy periodically. We'll notify you of material changes via
 
 **Reilly Design Studio LLC**
 Reston, Virginia
-[your email]
+robert.reilly@reillydesignstudio.com
 reillydesignstudio.com

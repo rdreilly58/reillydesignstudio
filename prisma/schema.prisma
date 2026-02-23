@@ -1,0 +1,231 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Auth ────────────────────────────────────────────────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          UserRole  @default(CUSTOMER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts         Account[]
+  sessions         Session[]
+  orders           Order[]
+  quotes           Quote[]
+  digitalDownloads DigitalDownload[]
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+}
+
+// ─── Products ─────────────────────────────────────────────────────────────────
+
+model Product {
+  id          String      @id @default(cuid())
+  name        String
+  slug        String      @unique
+  description String      @db.Text
+  price       Int         // in cents
+  type        ProductType
+  images      String[]    // array of image URLs
+  tags        String[]
+  published   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // Physical only
+  stock       Int?
+  weight      Float?      // kg
+  dimensions  String?     // "L x W x H"
+
+  // Digital only
+  fileKey     String?     // S3 key
+  fileName    String?
+
+  // Service only
+  duration    String?     // e.g. "2-4 weeks"
+  deliverables String?    @db.Text
+
+  orderItems  OrderItem[]
+}
+
+enum ProductType {
+  PHYSICAL
+  DIGITAL
+  SERVICE
+}
+
+// ─── Orders ───────────────────────────────────────────────────────────────────
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String?
+  user            User?       @relation(fields: [userId], references: [id])
+  status          OrderStatus @default(PENDING)
+  total           Int         // in cents
+  stripePaymentId String?     @unique
+  
+  // Shipping (physical orders)
+  shippingName    String?
+  shippingLine1   String?
+  shippingLine2   String?
+  shippingCity    String?
+  shippingState   String?
+  shippingZip     String?
+  shippingCountry String?
+
+  // Customer email (for guests)
+  email           String?
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  items           OrderItem[]
+  downloads       DigitalDownload[]
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Int     // price at time of purchase, in cents
+
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+// ─── Digital Downloads ────────────────────────────────────────────────────────
+
+model DigitalDownload {
+  id            String    @id @default(cuid())
+  token         String    @unique @default(cuid())
+  userId        String?
+  user          User?     @relation(fields: [userId], references: [id])
+  orderId       String
+  order         Order     @relation(fields: [orderId], references: [id])
+  fileKey       String    // S3 key
+  fileName      String
+  downloadCount Int       @default(0)
+  maxDownloads  Int       @default(5)
+  expiresAt     DateTime
+  createdAt     DateTime  @default(now())
+}
+
+// ─── Quotes / Services ────────────────────────────────────────────────────────
+
+model Quote {
+  id          String      @id @default(cuid())
+  userId      String?
+  user        User?       @relation(fields: [userId], references: [id])
+  name        String
+  email       String
+  company     String?
+  service     String
+  description String      @db.Text
+  budget      String?
+  timeline    String?
+  status      QuoteStatus @default(PENDING)
+  adminNotes  String?     @db.Text
+  quotedPrice Int?        // in cents
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+enum QuoteStatus {
+  PENDING
+  REVIEWING
+  SENT
+  ACCEPTED
+  DECLINED
+}
+
+// ─── Blog ─────────────────────────────────────────────────────────────────────
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  excerpt     String
+  content     String    @db.Text
+  coverImage  String?
+  tags        String[]
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ─── Portfolio ────────────────────────────────────────────────────────────────
+
+model PortfolioItem {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String    @db.Text
+  images      String[]
+  tags        String[]
+  client      String?
+  year        Int?
+  featured    Boolean   @default(false)
+  published   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}

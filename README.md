@@ -103,3 +103,17 @@ Domain: `reillydesignstudio.com` via Cloudflare (DNS proxy off for Amplify SSL).
 Planned subdomains:
 - `api.reillydesignstudio.com` — REST API / serverless functions
 - `media.reillydesignstudio.com` — S3 media CDN
+
+## Internal Tooling
+
+| Tool | Docs | Description |
+|------|------|-------------|
+| Softphone | [docs/softphone.md](docs/softphone.md) | Browser-based softphone (Twilio Voice SDK, Mac mic/speakers) |
+
+## AI / Automation
+
+This project is managed with **OpenClaw** — an AI agent with access to the codebase, deployment pipeline, and external services (Twilio, Stripe, AWS).
+
+- Voice calls and AI conversation: Twilio + OpenAI Realtime API
+- Deployments: AWS Amplify (auto-deploy on push to `main`)
+- Secrets managed via `~/.openclaw/openclaw.json` (never committed)

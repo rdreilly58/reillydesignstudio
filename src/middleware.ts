@@ -7,15 +7,14 @@ const ADMIN_EMAILS = [
 ];
 
 export async function middleware(req: NextRequest) {
-  // Only protect /admin routes (except /admin/login)
-  if (!req.nextUrl.pathname.startsWith("/admin") || req.nextUrl.pathname === "/admin/login") {
+  if (!req.nextUrl.pathname.startsWith("/admin")) {
     return NextResponse.next();
   }
 
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   if (!token || !token.email || !ADMIN_EMAILS.includes(token.email)) {
-    const loginUrl = new URL("/admin/login", req.url);
+    const loginUrl = new URL("/login", req.url);
     return NextResponse.redirect(loginUrl);
   }
 

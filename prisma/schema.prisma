@@ -111,6 +111,7 @@ model Order {
   status          OrderStatus @default(PENDING)
   total           Int         // in cents
   stripePaymentId String?     @unique
+  stripeInvoiceId String?
   
   // Shipping (physical orders)
   shippingName    String?
@@ -182,9 +183,12 @@ model Quote {
   description String      @db.Text
   budget      String?
   timeline    String?
-  status      QuoteStatus @default(PENDING)
+  status            QuoteStatus @default(PENDING)
   adminNotes  String?     @db.Text
   quotedPrice Int?        // in cents
+  stripePaymentLink String?
+  stripeCustomerId  String?
+  stripeSessionId   String?
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }

@@ -14,6 +14,8 @@ frontend:
         - echo "STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY" >> .env.production
         - echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=$NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY" >> .env.production
         - echo "STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET" >> .env.production
+        - echo "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID" >> .env.production
+        - echo "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET" >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next

@@ -18,12 +18,21 @@ export async function POST(req: NextRequest) {
     const data = quoteSchema.parse(body);
     const quote = await prisma.quote.create({ data });
     return NextResponse.json({ success: true, id: quote.id }, { status: 201 });
-  } catch (err) {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  } catch (err: any) {
+    console.error("[quotes] POST error:", err?.message || err);
+    if (err instanceof z.ZodError) {
+      return NextResponse.json({ error: "Validation failed", details: err.errors }, { status: 400 });
+    }
+    return NextResponse.json({ error: err?.message || "Internal error" }, { status: 500 });
   }
 }
 
 export async function GET() {
-  const quotes = await prisma.quote.findMany({ orderBy: { createdAt: "desc" } });
-  return NextResponse.json(quotes);
+  try {
+    const quotes = await prisma.quote.findMany({ orderBy: { createdAt: "desc" } });
+    return NextResponse.json(quotes);
+  } catch (err: any) {
+    console.error("[quotes] GET error:", err?.message || err);
+    return NextResponse.json({ error: err?.message || "Internal error" }, { status: 500 });
+  }
 }

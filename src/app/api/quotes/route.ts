@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
   } catch (err: any) {
     console.error("[quotes] POST error:", err?.message || err);
     if (err instanceof z.ZodError) {
-      return NextResponse.json({ error: "Validation failed", details: err.errors }, { status: 400 });
+      return NextResponse.json({ error: "Validation failed", details: err.issues }, { status: 400 });
     }
     return NextResponse.json({ error: err?.message || "Internal error" }, { status: 500 });
   }

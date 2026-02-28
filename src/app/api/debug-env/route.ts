@@ -1,13 +1,21 @@
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
-  return NextResponse.json({
-    hasDbUrl: !!process.env.DATABASE_URL,
-    hasNextAuthSecret: !!process.env.NEXTAUTH_SECRET,
-    hasNextAuthUrl: !!process.env.NEXTAUTH_URL,
-    nextAuthUrl: process.env.NEXTAUTH_URL,
-    hasGoogleClientId: !!process.env.GOOGLE_CLIENT_ID,
-    hasGoogleClientSecret: !!process.env.GOOGLE_CLIENT_SECRET,
-    nodeEnv: process.env.NODE_ENV,
-  });
+  try {
+    const userCount = await prisma.user.count();
+    const accountCount = await prisma.account.count();
+    const sessionCount = await prisma.session.count();
+    return NextResponse.json({
+      dbConnected: true,
+      userCount,
+      accountCount,
+      sessionCount,
+    });
+  } catch (e: any) {
+    return NextResponse.json({
+      dbConnected: false,
+      error: e.message,
+    });
+  }
 }

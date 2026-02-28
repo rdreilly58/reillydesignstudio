@@ -178,3 +178,17 @@ This project is managed with **OpenClaw** — an AI agent with access to the cod
 4. On success, NextAuth creates User/Account/Session records in PostgreSQL via PrismaAdapter
 5. Session cookie is set → middleware allows access
 6. Admin layout verifies email is in the allowed list
+
+## Trademarks
+
+- **Reilly Design Studio™** — USPTO search clear as of 2026-02-28
+- **Design That Moves People™** — USPTO search clear as of 2026-02-28
+- Federal trademark applications pending filing (TEAS Plus, Class 42)
+- ™ displayed on site: hero tagline, footer, page metadata
+
+## Email Signature
+
+HTML email signature stored at `~/.openclaw/workspace/rds-email-signature.html`
+- Logo: `/public/signature-logo.png` (dark zinc + violet "RDS")
+- Installed in Spark Mail for `robert.reilly@reillydesignstudio.com`
+- Brand colors: violet (#8b5cf6, #7c3aed) on white

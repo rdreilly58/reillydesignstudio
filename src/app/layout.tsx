@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ReillyDesignStudio — Design That Moves People",
+    default: "ReillyDesignStudio™ — Design That Moves People™",
     template: "%s | ReillyDesignStudio",
   },
   description:

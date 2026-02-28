@@ -68,7 +68,7 @@ export default function HomePage() {
           </span>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight">
             Design that <br />
-            <span className="text-violet-400">moves people.</span>
+            <span className="text-violet-400">moves people™.</span>
           </h1>
           <p className="mt-6 text-xl text-zinc-400 max-w-2xl mx-auto">
             Studio-grade design work, digital products, and physical goods.

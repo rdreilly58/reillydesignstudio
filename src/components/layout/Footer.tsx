@@ -27,7 +27,7 @@ export default function Footer() {
               Reilly<span className="text-violet-400">Design</span>Studio
             </Link>
             <p className="mt-3 text-zinc-500 text-sm leading-relaxed">
-              Design that moves people. Built for brands that mean business.
+              Design That Moves People™. Built for brands that mean business.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-zinc-600 text-sm">
-            © {new Date().getFullYear()} ReillyDesignStudio. All rights reserved.
+            © {new Date().getFullYear()} Reilly Design Studio™. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-zinc-600 hover:text-zinc-400 text-sm transition-colors">Privacy</Link>

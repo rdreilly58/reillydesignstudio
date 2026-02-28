@@ -154,3 +154,27 @@ This project is managed with **OpenClaw** — an AI agent with access to the cod
 
 - Deployments: AWS Amplify (auto-deploy on push to `main`)
 - Secrets managed via environment variables (never committed)
+
+## Admin Authentication
+
+### How It Works
+
+- **Auth Provider:** NextAuth.js with Google OAuth + PrismaAdapter (database sessions)
+- **Protected Routes:** All `/admin/*` routes
+- **Allowed Emails:** `rdreilly2010@gmail.com`, `robert.reilly@reillydesignstudio.com`
+
+### Architecture Notes
+
+- **Middleware** (`src/middleware.ts`) checks for the `__Secure-next-auth.session-token` cookie on `/admin/*` routes. If missing, redirects to `/api/auth/signin`.
+- **Admin layout** (`src/app/admin/layout.tsx`) uses `useSession()` to verify the authenticated user's email is in the allowed list. Non-admin emails are redirected to `/`.
+- **Important:** Since PrismaAdapter uses **database sessions** (not JWT), `getToken()` from `next-auth/jwt` does **not** work in middleware. The middleware must check for the session cookie directly.
+- **Amplify SSR quirk:** `req.url` inside Amplify's SSR Lambda resolves to `localhost:3000`, not the real domain. The middleware hardcodes the production base URL for redirects.
+
+### Login Flow
+
+1. User navigates to `/admin`
+2. Middleware checks for session cookie → redirects to `/api/auth/signin` if missing
+3. User clicks "Sign in with Google" → Google OAuth flow
+4. On success, NextAuth creates User/Account/Session records in PostgreSQL via PrismaAdapter
+5. Session cookie is set → middleware allows access
+6. Admin layout verifies email is in the allowed list

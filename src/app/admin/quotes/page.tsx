@@ -74,7 +74,7 @@ export default function AdminQuotesPage() {
                     <span className="text-zinc-500 ml-2 text-sm">{q.service}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 flex-wrap">
                   {q.quotedPrice && <span className="text-green-400 font-medium">${(q.quotedPrice / 100).toFixed(2)}</span>}
                   <span className="text-zinc-600 text-xs">{new Date(q.createdAt).toLocaleDateString()}</span>
                 </div>
@@ -127,7 +127,7 @@ export default function AdminQuotesPage() {
                     />
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-wrap">
                     {q.quotedPrice && q.status !== "ACCEPTED" && (
                       <button
                         onClick={() => sendQuote(q.id)}
@@ -137,6 +137,7 @@ export default function AdminQuotesPage() {
                         {sending ? "Sending..." : "Send Quote & Payment Link"}
                       </button>
                     )}
+                    <a href={`/api/quotes/${q.id}/pdf`} target="_blank" rel="noopener" className="px-4 py-2 rounded-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 text-white text-sm font-medium inline-flex items-center gap-2">📄 Download PDF</a>
                     {q.stripePaymentLink && (
                       <a href={q.stripePaymentLink} target="_blank" rel="noopener" className="text-violet-400 hover:text-violet-300 text-sm">View Payment Link →</a>
                     )}

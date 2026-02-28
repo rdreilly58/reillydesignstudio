@@ -104,7 +104,7 @@ export default function AdminInvoicesPage() {
                 <span className="text-green-400 font-medium">${(inv.total / 100).toFixed(2)}</span>
                 <span className="text-zinc-600 text-xs">{new Date(inv.createdAt).toLocaleDateString()}</span>
                 <div className="flex gap-2">
-                  {inv.pdfUrl && <a href={inv.pdfUrl} target="_blank" rel="noopener" className="text-violet-400 hover:text-violet-300 text-xs">PDF</a>}
+                  <a href={`/api/invoices/${inv.id}/pdf`} target="_blank" rel="noopener" className="px-3 py-1 rounded-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 text-white text-xs font-medium">📄 PDF</a>
                   {inv.hostedUrl && <a href={inv.hostedUrl} target="_blank" rel="noopener" className="text-violet-400 hover:text-violet-300 text-xs">View</a>}
                 </div>
               </div>

@@ -192,3 +192,14 @@ HTML email signature stored at `~/.openclaw/workspace/rds-email-signature.html`
 - Logo: `/public/signature-logo.png` (dark zinc + violet "RDS")
 - Installed in Spark Mail for `robert.reilly@reillydesignstudio.com`
 - Brand colors: violet (#8b5cf6, #7c3aed) on white
+
+## PDF Templates
+
+Professional quote and invoice PDFs generated with `@react-pdf/renderer`:
+
+- **Quote PDF** — Project scope, pricing, terms, 30-day validity, 50% deposit terms
+- **Invoice PDF** — Itemized billing, payment info (Mercury bank details + online), late fee terms
+- Both use branded header (RDS logo, violet accents, "Design That Moves People™")
+- Generated on-demand via `/api/quotes/[id]/pdf` and `/api/invoices/[id]/pdf`
+- Sample PDFs viewable at `/samples/sample-quote.pdf` and `/samples/sample-invoice.pdf`
+- Source: `src/lib/pdf/QuotePDF.tsx`, `src/lib/pdf/InvoicePDF.tsx`, `src/lib/pdf/styles.ts`

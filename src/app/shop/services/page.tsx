@@ -77,6 +77,31 @@ export default function ServicesPage() {
         ))}
       </div>
 
+
+      {/* Professional Documentation */}
+      <div className="mb-20">
+        <h2 className="text-2xl font-bold text-white mb-2">Professional Documentation</h2>
+        <p className="text-zinc-500 text-sm mb-8">Every project comes with polished, branded quotes and invoices.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="/samples/sample-quote.pdf" target="_blank" rel="noopener" className="group rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-violet-600/50 p-6 transition-all">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-2xl">📋</span>
+              <h3 className="text-white font-semibold group-hover:text-violet-400 transition-colors">Sample Quote</h3>
+            </div>
+            <p className="text-zinc-500 text-sm">Detailed project scope, pricing, and terms — professionally formatted with your project details.</p>
+            <span className="inline-block mt-4 text-violet-400 text-sm font-medium group-hover:text-violet-300">View PDF →</span>
+          </a>
+          <a href="/samples/sample-invoice.pdf" target="_blank" rel="noopener" className="group rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-violet-600/50 p-6 transition-all">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-2xl">🧾</span>
+              <h3 className="text-white font-semibold group-hover:text-violet-400 transition-colors">Sample Invoice</h3>
+            </div>
+            <p className="text-zinc-500 text-sm">Clean, itemized invoices with payment details and terms — sent automatically via Stripe.</p>
+            <span className="inline-block mt-4 text-violet-400 text-sm font-medium group-hover:text-violet-300">View PDF →</span>
+          </a>
+        </div>
+      </div>
+
       <div className="rounded-2xl bg-violet-950/40 border border-violet-900/30 p-8">
         <h2 className="text-2xl font-bold text-white mb-1">Request a Quote</h2>
         <p className="text-zinc-400 text-sm mb-8">Tell me about your project. I&apos;ll get back to you within 24 hours.</p>

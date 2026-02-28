@@ -184,7 +184,7 @@ This project is managed with **OpenClaw** — an AI agent with access to the cod
 - **Reilly Design Studio™** — USPTO search clear as of 2026-02-28
 - **Design That Moves People™** — USPTO search clear as of 2026-02-28
 - Federal trademark applications pending filing (TEAS Plus, Class 42)
-- ™ displayed on site: hero tagline, footer, page metadata
+- ™ displayed on site: navbar logo, hero tagline, footer, page metadata (superscript styling)
 
 ## Email Signature
 

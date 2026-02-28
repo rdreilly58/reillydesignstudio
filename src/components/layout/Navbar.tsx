@@ -19,7 +19,7 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="text-white font-semibold text-lg tracking-tight">
-          Reilly<span className="text-violet-400">Design</span>Studio
+          Reilly<span className="text-violet-400">Design</span>Studio<sup className="text-[0.5em] text-violet-400/60 ml-0.5">™</sup>
         </Link>
 
         {/* Desktop nav */}

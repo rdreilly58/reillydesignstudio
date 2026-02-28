@@ -14,8 +14,9 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   if (!token || !token.email || !ADMIN_EMAILS.includes(token.email)) {
-    const signinUrl = new URL("/api/auth/signin", req.url);
-    signinUrl.searchParams.set("callbackUrl", req.url);
+    const baseUrl = "https://reillydesignstudio.com";
+    const signinUrl = new URL("/api/auth/signin", baseUrl);
+    signinUrl.searchParams.set("callbackUrl", `${baseUrl}${req.nextUrl.pathname}`);
     return NextResponse.redirect(signinUrl);
   }
 

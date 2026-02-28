@@ -3,6 +3,11 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 
+// Force NEXTAUTH_URL in production - Amplify SSR Lambda doesn't pass env vars properly
+if (!process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL.includes("localhost")) {
+  process.env.NEXTAUTH_URL = "https://reillydesignstudio.com";
+}
+
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma) as any,
   providers: [

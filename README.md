@@ -165,18 +165,31 @@ This project is managed with **OpenClaw** — an AI agent with access to the cod
 
 ### Architecture Notes
 
-- **Middleware** (`src/middleware.ts`) checks for the `__Secure-next-auth.session-token` cookie on `/admin/*` routes. If missing, redirects to `/api/auth/signin`.
+- **Session Strategy:** JWT (not database sessions) — required for mobile Safari compatibility
+
+- **Middleware** (`src/middleware.ts`) checks for the `next-auth.session-token` cookie on `/admin/*` routes. If missing, redirects to `/api/auth/signin`.
 - **Admin layout** (`src/app/admin/layout.tsx`) uses `useSession()` to verify the authenticated user's email is in the allowed list. Non-admin emails are redirected to `/`.
-- **Important:** Since PrismaAdapter uses **database sessions** (not JWT), `getToken()` from `next-auth/jwt` does **not** work in middleware. The middleware must check for the session cookie directly.
+- **Important:** Uses JWT sessions for mobile Safari compatibility. See "Mobile Safari OAuth Fix" below.
 - **Amplify SSR quirk:** `req.url` inside Amplify's SSR Lambda resolves to `localhost:3000`, not the real domain. The middleware hardcodes the production base URL for redirects.
+
+### Mobile Safari OAuth Fix (IMPORTANT)
+
+Mobile Safari Intelligent Tracking Prevention (ITP) blocks cookies with `__Host-` and `__Secure-` prefixes during cross-origin OAuth redirects (Google passkey flow). This causes CSRF token mismatch and an `OAuthCallback` error.
+
+**The fix (in `src/app/api/auth/[...nextauth]/route.ts`):**
+1. **JWT sessions** (`session: { strategy: "jwt" }`) instead of database sessions
+2. **Plain cookie names** without `__Host-`/`__Secure-` prefixes
+3. **`SameSite=lax`** (not `none` or `strict`)
+
+If you switch back to database sessions or prefixed cookies, mobile Safari login WILL break.
 
 ### Login Flow
 
 1. User navigates to `/admin`
 2. Middleware checks for session cookie → redirects to `/api/auth/signin` if missing
 3. User clicks "Sign in with Google" → Google OAuth flow
-4. On success, NextAuth creates User/Account/Session records in PostgreSQL via PrismaAdapter
-5. Session cookie is set → middleware allows access
+4. On success, NextAuth creates User/Account records in PostgreSQL via PrismaAdapter, JWT session issued
+5. JWT session cookie set → middleware allows access
 6. Admin layout verifies email is in the allowed list
 
 ## Trademarks

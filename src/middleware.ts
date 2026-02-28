@@ -14,8 +14,9 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   if (!token || !token.email || !ADMIN_EMAILS.includes(token.email)) {
-    const loginUrl = new URL("/login", req.url);
-    return NextResponse.redirect(loginUrl);
+    const signinUrl = new URL("/api/auth/signin", req.url);
+    signinUrl.searchParams.set("callbackUrl", req.url);
+    return NextResponse.redirect(signinUrl);
   }
 
   return NextResponse.next();

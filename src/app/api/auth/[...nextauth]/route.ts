@@ -20,10 +20,6 @@ export const authOptions: AuthOptions = {
       return session;
     },
   },
-  pages: {
-    signIn: "/login",
-  },
-  debug: true,
 };
 
 const handler = NextAuth(authOptions);

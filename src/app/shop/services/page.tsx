@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Cpu } from "lucide-react";
+import { Cpu, Shield } from "lucide-react";
 
 const designServices = [
   { name: "Brand Identity", desc: "Logo, color system, typography, and brand guidelines.", from: 1500, amount: 150000, duration: "2–4 weeks" },
@@ -17,7 +17,14 @@ const aiServices = [
   { name: "AI Consulting", desc: "AI readiness assessments, architecture reviews, strategy sessions, and team training. Evaluate what AI can do for your business.", from: 300, amount: 30000, duration: "Per hour" },
 ];
 
-const allServices = [...designServices, ...aiServices];
+
+const cyberServices = [
+  { name: "Penetration Testing", desc: "Network, web app, and infrastructure vulnerability assessment with detailed remediation reports.", from: 3000, amount: 300000, duration: "1–3 weeks" },
+  { name: "Security Audit", desc: "Comprehensive review of your security posture — configurations, access controls, and compliance gaps.", from: 2000, amount: 200000, duration: "1–2 weeks" },
+  { name: "Red Team Assessment", desc: "Simulated adversary attack scenarios to test your defenses under realistic conditions.", from: 5000, amount: 500000, duration: "2–4 weeks" },
+];
+
+const allServices = [...designServices, ...aiServices, ...cyberServices];
 
 export default function ServicesPage() {
   const [form, setForm] = useState({ name: "", email: "", company: "", service: "", description: "", budget: "", timeline: "" });
@@ -112,6 +119,25 @@ export default function ServicesPage() {
         </Link>
       </div>
 
+
+      {/* Cybersecurity & Penetration Testing */}
+      <div id="cyber" className="mb-20">
+        <div className="flex items-center gap-3 mb-2">
+          <Shield className="text-red-400" size={24} />
+          <h2 className="text-2xl font-bold text-white">Cybersecurity & Penetration Testing</h2>
+        </div>
+        <p className="text-zinc-500 text-sm mb-6">Find the holes before the bad guys do. Offensive security testing with actionable remediation.</p>
+        <div className="space-y-4 mb-6">
+          {cyberServices.map((svc) => <ServiceCard key={svc.name} svc={svc} />)}
+        </div>
+        <Link
+          href="/shop/services/cybersecurity"
+          className="inline-flex items-center gap-2 text-red-400 hover:text-red-300 text-sm font-medium transition-colors"
+        >
+          Learn more about our cybersecurity services →
+        </Link>
+      </div>
+
       {/* Professional Documentation */}
       <div className="mb-20">
         <h2 className="text-2xl font-bold text-white mb-2">Professional Documentation</h2>
@@ -172,6 +198,9 @@ export default function ServicesPage() {
                   </optgroup>
                   <optgroup label="AI & Automation">
                     {aiServices.map((s) => <option key={s.name} value={s.name}>{s.name}</option>)}
+                  </optgroup>
+                  <optgroup label="Cybersecurity">
+                    {cyberServices.map((s) => <option key={s.name} value={s.name}>{s.name}</option>)}
                   </optgroup>
                 </select>
               </div>

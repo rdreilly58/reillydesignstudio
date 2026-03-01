@@ -274,3 +274,9 @@ Blog posts are currently stored as inline HTML in the `[slug]/page.tsx` file. Fu
 - **Brand Identity** — Apex Co. (placeholder)
 - **E-Commerce UX** — ShopLocal (placeholder)
 - Featured work cards support images with gradient overlay and both internal/external links
+
+### ReillyDesignStudio.com (Self-Referential Case Study)
+- **URL:** [/portfolio/reilly-design-studio](https://reillydesignstudio.com/portfolio/reilly-design-studio)
+- **Screenshots:** `public/portfolio/rds-homepage.jpg`, `public/portfolio/rds-services.jpg`
+- **Sections:** Story, Design Philosophy, Features (8), Tech Stack (15), Site Structure, Architecture Decisions, Business Stack
+- **Replaces:** E-Commerce UX / ShopLocal placeholder in homepage + portfolio grid

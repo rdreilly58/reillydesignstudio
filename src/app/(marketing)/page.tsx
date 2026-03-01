@@ -1,31 +1,17 @@
 import Link from "next/link";
-import { ArrowRight, Package, Download, Briefcase, Pen, Bot } from "lucide-react";
+import { ArrowRight, Briefcase, Pen, Bot, Cpu, Shield } from "lucide-react";
 
 const featuredWork = [
-  { title: "Brand Identity", client: "Apex Co.", tag: "Branding", image: "/images/portfolio-1.jpg" },
-  { title: "E-Commerce UX", client: "ShopLocal", tag: "UI/UX", image: "/images/portfolio-2.jpg" },
-  { title: "Print Series", client: "Gallery 44", tag: "Print", image: "/images/portfolio-3.jpg" },
+  { title: "Brand Identity", client: "Apex Co.", tag: "Branding", image: "/images/portfolio-1.jpg", href: "/portfolio/brand-identity" },
+  { title: "E-Commerce UX", client: "ShopLocal", tag: "UI/UX", image: "/images/portfolio-2.jpg", href: "/portfolio/e-commerce-ux" },
+  { title: "Lucian & Gideon", client: "lucianandgideon.com", tag: "Web", image: "/images/portfolio-3.jpg", href: "/portfolio/lucian-and-gideon" },
 ];
 
 const services = [
   {
-    icon: Package,
-    title: "Physical Products",
-    desc: "Prints, merch, and handcrafted goods shipped to your door.",
-    href: "/shop/physical",
-    color: "from-amber-500/20 to-amber-600/5",
-  },
-  {
-    icon: Download,
-    title: "Digital Downloads",
-    desc: "Fonts, templates, mockups, and design assets — instant access.",
-    href: "/shop/digital",
-    color: "from-sky-500/20 to-sky-600/5",
-  },
-  {
     icon: Briefcase,
-    title: "Custom Services",
-    desc: "Branding, UX design, print, and more. Let\u2019s talk scope.",
+    title: "Design Services",
+    desc: "Branding, UX design, print, and more. Studio-grade design for brands that mean business.",
     href: "/shop/services",
     color: "from-violet-500/20 to-violet-600/5",
   },
@@ -35,6 +21,20 @@ const services = [
     desc: "OpenClaw setup, custom AI solutions, and consulting. Make AI work for you.",
     href: "/shop/services#ai",
     color: "from-emerald-500/20 to-emerald-600/5",
+  },
+  {
+    icon: Cpu,
+    title: "Embedded Software Development",
+    desc: "Board bring-up, firmware, device drivers, and real-time systems. 20+ years of bare-metal expertise.",
+    href: "/shop/services#embedded",
+    color: "from-orange-500/20 to-orange-600/5",
+  },
+  {
+    icon: Shield,
+    title: "Cybersecurity & Penetration Testing",
+    desc: "Vulnerability assessments, pen testing, and security hardening for your infrastructure and applications.",
+    href: "/shop/services#cybersecurity",
+    color: "from-red-500/20 to-red-600/5",
   },
 ];
 
@@ -57,9 +57,10 @@ const recentPosts = [
     tag: "AI",
     slug: "rag-pipelines-explained",
   },
+  { title: "The Art of Embedded Board Bring-Up", date: "Mar 2026", tag: "Embedded", slug: "embedded-board-bring-up" },
+  { title: "The Art of Embedded Board Bring-Up", date: "Mar 2026", tag: "Embedded", slug: "embedded-board-bring-up" },
   { title: "Why White Space Is the Most Underrated Design Tool", date: "Feb 2026", tag: "Design Theory", slug: "white-space-design" },
   { title: "Building a Design System from Scratch in 2026", date: "Jan 2026", tag: "Process", slug: "design-system-2026" },
-  { title: "Typography Rules Every Designer Should Know", date: "Jan 2026", tag: "Typography", slug: "typography-rules" },
 ];
 
 export default function HomePage() {
@@ -122,7 +123,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-white">What I Offer</h2>
-            <p className="text-zinc-500 mt-2">Four ways to work together.</p>
+            <p className="text-zinc-500 mt-2">From design to defense — four ways to work together.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((svc) => (

@@ -241,3 +241,13 @@ Professional quote and invoice PDFs generated with `@react-pdf/renderer`:
 | `typography-rules` | Typography Rules Every Designer Should Know | Typography | Jan 2026 |
 
 Blog posts are currently stored as inline HTML in the `[slug]/page.tsx` file. Future migration to MDX + database is planned.
+
+## Portfolio
+
+### Lucian & Gideon's Coloring Fun (Featured)
+- **URL:** [lucianandgideon.com](https://lucianandgideon.com)
+- **Case Study:** [/portfolio/lucian-and-gideon](https://reillydesignstudio.com/portfolio/lucian-and-gideon)
+- **Tech:** Next.js, TypeScript, Tailwind CSS, AWS Amplify, Cloudflare
+- **Content:** 80 original coloring page illustrations across 4 categories (Monster Trucks, Dinosaurs, Robots, Superheroes)
+- **Features:** Kid-proof navigation, print-first design, zero friction (no accounts/paywalls), mobile responsive
+- **Screenshots:** `public/portfolio/lucian-gideon-home.jpg`, `public/portfolio/lucian-gideon-category.jpg`

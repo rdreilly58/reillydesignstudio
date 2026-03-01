@@ -4,7 +4,7 @@ import { ArrowRight, Briefcase, Pen, Bot, Cpu, Shield } from "lucide-react";
 const featuredWork = [
   { title: "Brand Identity", client: "Apex Co.", tag: "Branding", image: "/images/portfolio-1.jpg", href: "/portfolio/brand-identity" },
   { title: "E-Commerce UX", client: "ShopLocal", tag: "UI/UX", image: "/images/portfolio-2.jpg", href: "/portfolio/e-commerce-ux" },
-  { title: "Lucian & Gideon", client: "lucianandgideon.com", tag: "Web", image: "/images/portfolio-3.jpg", href: "/portfolio/lucian-and-gideon" },
+  { title: "Lucian & Gideon's Coloring Fun", client: "lucianandgideon.com", tag: "App Design", image: "/images/portfolio-3.jpg", href: "/portfolio/lucian-and-gideon" },
 ];
 
 const services = [

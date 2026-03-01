@@ -1,13 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { Cpu } from "lucide-react";
 
-const services = [
+const designServices = [
   { name: "Brand Identity", desc: "Logo, color system, typography, and brand guidelines.", from: 1500, amount: 150000, duration: "2–4 weeks" },
   { name: "UX/UI Design", desc: "User research, wireframes, and polished UI for web or mobile.", from: 2500, amount: 250000, duration: "4–8 weeks" },
   { name: "Print Design", desc: "Brochures, posters, packaging, and editorial design.", from: 800, amount: 80000, duration: "1–3 weeks" },
-  { name: "Consulting", desc: "Design audits, strategy sessions, and team workshops.", from: 250, amount: 25000, duration: "Per session" },
+  { name: "Design Consulting", desc: "Design audits, strategy sessions, and team workshops.", from: 250, amount: 25000, duration: "Per session" },
 ];
+
+const aiServices = [
+  { name: "OpenClaw Implementation", desc: "Full AI assistant setup — gateway config, channel integrations (WhatsApp, Telegram, Discord, SMS), custom skills, and device pairing.", from: 2500, amount: 250000, duration: "1–2 weeks" },
+  { name: "Custom AI Solutions", desc: "Bespoke AI applications — RAG pipelines, LLM integrations, agent workflows, fine-tuning, and production deployment.", from: 5000, amount: 500000, duration: "2–6 weeks" },
+  { name: "AI Consulting", desc: "AI readiness assessments, architecture reviews, strategy sessions, and team training. Evaluate what AI can do for your business.", from: 300, amount: 30000, duration: "Per hour" },
+];
+
+const allServices = [...designServices, ...aiServices];
 
 export default function ServicesPage() {
   const [form, setForm] = useState({ name: "", email: "", company: "", service: "", description: "", budget: "", timeline: "" });
@@ -32,7 +42,7 @@ export default function ServicesPage() {
     }
   };
 
-  const handleBook = async (svc: typeof services[0]) => {
+  const handleBook = async (svc: typeof designServices[0]) => {
     setBooking(svc.name);
     try {
       const res = await fetch("/api/checkout", {
@@ -50,33 +60,57 @@ export default function ServicesPage() {
     }
   };
 
+  const ServiceCard = ({ svc }: { svc: typeof designServices[0] }) => (
+    <div className="rounded-2xl bg-zinc-900 border border-zinc-800 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h3 className="text-white font-semibold">{svc.name}</h3>
+        <p className="text-zinc-400 text-sm mt-1">{svc.desc}</p>
+        <p className="text-zinc-600 text-xs mt-2">{svc.duration}</p>
+      </div>
+      <div className="flex items-center gap-4 shrink-0">
+        <span className="text-white font-medium">From ${svc.from.toLocaleString()}</span>
+        <button
+          onClick={() => handleBook(svc)}
+          disabled={booking === svc.name}
+          className="px-5 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white font-semibold text-sm transition-colors"
+        >
+          {booking === svc.name ? "Loading..." : "Book Now"}
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <h1 className="text-4xl font-bold text-white mb-2">Services</h1>
-      <p className="text-zinc-500 mb-16">Custom design work. Every project starts with a conversation.</p>
+      <p className="text-zinc-500 mb-16">Custom design and AI work. Every project starts with a conversation.</p>
 
-      <div className="space-y-4 mb-20">
-        {services.map((svc) => (
-          <div key={svc.name} className="rounded-2xl bg-zinc-900 border border-zinc-800 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <h3 className="text-white font-semibold">{svc.name}</h3>
-              <p className="text-zinc-400 text-sm mt-1">{svc.desc}</p>
-              <p className="text-zinc-600 text-xs mt-2">{svc.duration}</p>
-            </div>
-            <div className="flex items-center gap-4 shrink-0">
-              <span className="text-white font-medium">From ${svc.from.toLocaleString()}</span>
-              <button
-                onClick={() => handleBook(svc)}
-                disabled={booking === svc.name}
-                className="px-5 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white font-semibold text-sm transition-colors"
-              >
-                {booking === svc.name ? "Loading..." : "Book Now"}
-              </button>
-            </div>
-          </div>
-        ))}
+      {/* Design Services */}
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold text-white mb-2">Design Services</h2>
+        <p className="text-zinc-500 text-sm mb-6">Brand, product, and visual design for teams that care about craft.</p>
+        <div className="space-y-4">
+          {designServices.map((svc) => <ServiceCard key={svc.name} svc={svc} />)}
+        </div>
       </div>
 
+      {/* AI & Automation */}
+      <div id="ai" className="mb-20">
+        <div className="flex items-center gap-3 mb-2">
+          <Cpu className="text-emerald-400" size={24} />
+          <h2 className="text-2xl font-bold text-white">AI & Automation</h2>
+        </div>
+        <p className="text-zinc-500 text-sm mb-6">Harness AI to transform your business. From personal AI assistants to enterprise solutions.</p>
+        <div className="space-y-4 mb-6">
+          {aiServices.map((svc) => <ServiceCard key={svc.name} svc={svc} />)}
+        </div>
+        <Link
+          href="/shop/services/ai"
+          className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
+        >
+          Learn more about our AI services →
+        </Link>
+      </div>
 
       {/* Professional Documentation */}
       <div className="mb-20">
@@ -133,7 +167,12 @@ export default function ServicesPage() {
                 <label className="block text-xs font-medium text-zinc-400 mb-2">Service *</label>
                 <select value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-white focus:outline-none focus:border-violet-500 text-sm" required>
                   <option value="">Select a service</option>
-                  {services.map((s) => <option key={s.name} value={s.name}>{s.name}</option>)}
+                  <optgroup label="Design">
+                    {designServices.map((s) => <option key={s.name} value={s.name}>{s.name}</option>)}
+                  </optgroup>
+                  <optgroup label="AI & Automation">
+                    {aiServices.map((s) => <option key={s.name} value={s.name}>{s.name}</option>)}
+                  </optgroup>
                 </select>
               </div>
             </div>

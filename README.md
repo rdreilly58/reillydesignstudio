@@ -251,3 +251,19 @@ Blog posts are currently stored as inline HTML in the `[slug]/page.tsx` file. Fu
 - **Content:** 80 original coloring page illustrations across 4 categories (Monster Trucks, Dinosaurs, Robots, Superheroes)
 - **Features:** Kid-proof navigation, print-first design, zero friction (no accounts/paywalls), mobile responsive
 - **Screenshots:** `public/portfolio/lucian-gideon-home.jpg`, `public/portfolio/lucian-gideon-category.jpg`
+
+## Embedded Software Development
+
+- **Services page:** [/shop/services#embedded](https://reillydesignstudio.com/shop/services#embedded)
+- **Explainer:** [/shop/services/embedded](https://reillydesignstudio.com/shop/services/embedded)
+- **Offerings:** Board Bring-Up ($5K), RTOS Development ($4K), Embedded Linux ($4K), Firmware Development ($3.5K)
+- **Domains:** Satellite/RF, Defense & Intelligence, Biomedical, Telemetry/IoT
+- **Specialties:** Low-power design, FreeRTOS, VxWorks, ARM Cortex-M/A, RISC-V, Yocto/Buildroot
+- **Blog:** [The Art of Embedded Board Bring-Up](/blog/embedded-board-bring-up)
+
+## Cybersecurity & Penetration Testing
+
+- **Services page:** [/shop/services#cyber](https://reillydesignstudio.com/shop/services#cyber)
+- **Explainer:** [/shop/services/cybersecurity](https://reillydesignstudio.com/shop/services/cybersecurity)
+- **Offerings:** Penetration Testing ($3K), Security Audit ($2K), Red Team Assessment ($5K)
+- **Open Source:** [nmap-static-binaries](https://github.com/rdreilly58/nmap-static-binaries)

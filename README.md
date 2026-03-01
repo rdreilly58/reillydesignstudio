@@ -1,6 +1,6 @@
 # ReillyDesignStudio.com
 
-Professional design studio website — portfolio, shop, blog, and services.
+Professional design studio and AI consultancy — portfolio, shop, blog, and services.
 
 ## Stack
 
@@ -29,6 +29,7 @@ Professional design studio website — portfolio, shop, blog, and services.
 /shop/physical              Physical products + cart
 /shop/digital               Digital downloads
 /shop/services              Services + quote request + Book Now checkout
+/shop/services/ai           AI & Automation services landing page
 /shop/cart                  Shopping cart
 /shop/checkout              Stripe checkout
 /shop/checkout/success      Payment confirmation
@@ -41,6 +42,19 @@ Professional design studio website — portfolio, shop, blog, and services.
 /admin/invoices             Invoice management (create, list, PDF download)
 /admin/blog                 Blog post management
 ```
+
+## Services Offered
+
+### Design Services
+- **Brand Identity** — Logo, color system, typography, and brand guidelines (from $1,500)
+- **UX/UI Design** — User research, wireframes, and polished UI (from $2,500)
+- **Print Design** — Brochures, posters, packaging, editorial (from $800)
+- **Design Consulting** — Design audits, strategy sessions, workshops ($250/session)
+
+### AI & Automation Services
+- **OpenClaw Implementation** — Full AI assistant setup, gateway config, channel integrations (WhatsApp, Telegram, Discord, SMS), custom skills, device pairing (from $2,500)
+- **Custom AI Solutions** — RAG pipelines, LLM integrations, agent workflows, fine-tuning, production deployment (from $5,000)
+- **AI Consulting** — AI readiness assessments, architecture reviews, strategy sessions, team training ($300/hr)
 
 ## Payment & Invoice System
 
@@ -166,10 +180,8 @@ This project is managed with **OpenClaw** — an AI agent with access to the cod
 ### Architecture Notes
 
 - **Session Strategy:** JWT (not database sessions) — required for mobile Safari compatibility
-
 - **Middleware** (`src/middleware.ts`) checks for the `next-auth.session-token` cookie on `/admin/*` routes. If missing, redirects to `/api/auth/signin`.
 - **Admin layout** (`src/app/admin/layout.tsx`) uses `useSession()` to verify the authenticated user's email is in the allowed list. Non-admin emails are redirected to `/`.
-- **Important:** Uses JWT sessions for mobile Safari compatibility. See "Mobile Safari OAuth Fix" below.
 - **Amplify SSR quirk:** `req.url` inside Amplify's SSR Lambda resolves to `localhost:3000`, not the real domain. The middleware hardcodes the production base URL for redirects.
 
 ### Mobile Safari OAuth Fix (IMPORTANT)

@@ -228,3 +228,16 @@ Professional quote and invoice PDFs generated with `@react-pdf/renderer`:
 - Generated on-demand via `/api/quotes/[id]/pdf` and `/api/invoices/[id]/pdf`
 - Sample PDFs viewable at `/samples/sample-quote.pdf` and `/samples/sample-invoice.pdf`
 - Source: `src/lib/pdf/QuotePDF.tsx`, `src/lib/pdf/InvoicePDF.tsx`, `src/lib/pdf/styles.ts`
+
+## Blog Posts
+
+| Slug | Title | Tag | Date |
+|------|-------|-----|------|
+| `what-is-openclaw` | What Is OpenClaw and How to Set It Up | AI | Mar 2026 |
+| `ai-for-small-business` | How to Add AI to Your Small Business in 2026 | AI | Mar 2026 |
+| `rag-pipelines-explained` | RAG Pipelines Explained for Business Owners | AI | Mar 2026 |
+| `white-space-design` | Why White Space Is the Most Underrated Design Tool | Design Theory | Feb 2026 |
+| `design-system-2026` | Building a Design System from Scratch in 2026 | Process | Jan 2026 |
+| `typography-rules` | Typography Rules Every Designer Should Know | Typography | Jan 2026 |
+
+Blog posts are currently stored as inline HTML in the `[slug]/page.tsx` file. Future migration to MDX + database is planned.

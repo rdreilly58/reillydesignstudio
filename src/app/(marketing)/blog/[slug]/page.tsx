@@ -256,6 +256,256 @@ const blogPosts: Record<string, { title: string; tag: string; date: string; read
 <p><a href="/shop/services">Let's discuss your use case</a>.</p>
     `,
   },
+  "white-space-design": {
+    title: "Why White Space Is the Most Underrated Design Tool",
+    tag: "Design Theory",
+    date: "February 2026",
+    readTime: "6 min read",
+    content: `
+<p>Every designer learns about color, typography, and layout. But the most powerful design element is the one you <em>don't</em> add. White space — also called negative space — is the breathing room between and around elements. And most people drastically underuse it.</p>
+
+<h2>White Space Isn't Wasted Space</h2>
+
+<p>The most common pushback I hear from clients: "Can we use that empty space for something?" It feels counterintuitive — you're paying for a design, so every pixel should be working, right?</p>
+
+<p>Wrong. White space <em>is</em> working. It's doing some of the hardest jobs in design:</p>
+
+<ul>
+<li><strong>Directing attention</strong> — When everything is crammed together, nothing stands out. White space creates visual hierarchy by isolating what matters.</li>
+<li><strong>Improving comprehension</strong> — Studies consistently show that increased margins and line spacing improve reading comprehension by 20% or more.</li>
+<li><strong>Conveying quality</strong> — Luxury brands use massive amounts of white space. It signals confidence and premium positioning. Think Apple, Cartier, Aesop.</li>
+<li><strong>Reducing cognitive load</strong> — Your brain processes cluttered layouts slower. White space lets users absorb information without feeling overwhelmed.</li>
+</ul>
+
+<h2>Micro vs. Macro White Space</h2>
+
+<p>There are two scales of white space, and both matter:</p>
+
+<h3>Micro White Space</h3>
+<p>The small gaps: letter spacing, line height, padding inside buttons, space between form fields. This is where readability lives. Get micro white space wrong and your text feels suffocating — or floaty and disconnected.</p>
+
+<p>Rules of thumb:</p>
+<ul>
+<li>Body text line height: 1.5–1.7x the font size</li>
+<li>Paragraph spacing: at least 1x the line height</li>
+<li>Button padding: generous horizontal padding (1.5–2x vertical)</li>
+<li>Form field spacing: consistent vertical rhythm</li>
+</ul>
+
+<h3>Macro White Space</h3>
+<p>The big gaps: margins, section spacing, the gap between a headline and its content. This is where composition lives. Macro white space creates the overall feeling of a page — whether it feels open and inviting or dense and overwhelming.</p>
+
+<p>The best test: squint at your design until you can't read the text. Do you see clear groups and hierarchy, or a uniform grey blob?</p>
+
+<h2>The Proximity Principle</h2>
+
+<p>White space is how you show relationships. Elements that are close together are perceived as related. Elements with space between them are perceived as separate. This is Gestalt's principle of proximity, and it's more powerful than most designers realize.</p>
+
+<p>A practical example: if the space between a heading and its paragraph is the same as the space between that paragraph and the next heading, the hierarchy breaks down. The heading should be <em>closer</em> to its content than to the previous section.</p>
+
+<h2>White Space in Practice</h2>
+
+<h3>Landing Pages</h3>
+<p>Give your hero section room to breathe. A full-viewport hero with a single headline, a sentence of copy, and one CTA button will outperform a cramped hero with five competing elements every time.</p>
+
+<h3>Cards and Lists</h3>
+<p>Internal card padding should be generous — at minimum 24px on all sides, more for feature cards. The space between cards matters too. If cards are touching, they feel like a wall. Give them 16–24px gaps.</p>
+
+<h3>Typography</h3>
+<p>The most impactful white space change you can make: increase your line height. If your body text is at 1.4 line height, bump it to 1.6. The difference is dramatic and immediate.</p>
+
+<h2>When to Break the Rules</h2>
+
+<p>Dense layouts aren't always bad. News sites, dashboards, and data-heavy applications need information density. The key is <em>intentional</em> density — tight spacing with clear hierarchy — versus <em>accidental</em> clutter.</p>
+
+<p>Even in dense layouts, white space still does the heavy lifting at the macro level: section dividers, breathing room around key actions, and clear separation between navigation and content.</p>
+
+<h2>The Takeaway</h2>
+
+<p>Next time you're reviewing a design and something feels "off" but you can't pinpoint why — try adding space. More padding. More margin. More room to breathe. Nine times out of ten, that's the fix.</p>
+
+<p>White space doesn't cost anything. It doesn't slow down your site. And it makes everything else in your design work harder. Use it generously.</p>
+
+<p>Need help with your brand's visual design? <a href="/shop/services">Let's talk</a>.</p>
+    `,
+  },
+  "design-system-2026": {
+    title: "Building a Design System from Scratch in 2026",
+    tag: "Process",
+    date: "January 2026",
+    readTime: "9 min read",
+    content: `
+<p>I've built design systems for startups, agencies, and my own projects. Every time, I learn something new. Here's my current playbook for building a design system from zero — updated for the tools and patterns that actually work in 2026.</p>
+
+<h2>What a Design System Actually Is</h2>
+
+<p>A design system isn't a Figma file. It's not a component library. It's not a style guide. It's all of those things working together as a <em>single source of truth</em> for how your product looks, feels, and behaves.</p>
+
+<p>The components:</p>
+<ul>
+<li><strong>Design tokens</strong> — Colors, spacing, typography, shadows, radii, motion</li>
+<li><strong>Components</strong> — Buttons, inputs, cards, modals, navigation</li>
+<li><strong>Patterns</strong> — How components combine (forms, data tables, empty states)</li>
+<li><strong>Guidelines</strong> — Voice, tone, accessibility, content rules</li>
+<li><strong>Documentation</strong> — How and when to use everything above</li>
+</ul>
+
+<h2>Step 1: Audit What Exists</h2>
+
+<p>Before building anything new, screenshot every unique UI element in your product. Every button variant, every card style, every shade of grey. Group them.</p>
+
+<p>You'll find two things:</p>
+<ol>
+<li>Way more inconsistency than you expected (17 shades of blue, anyone?)</li>
+<li>Natural patterns that already work and should be codified</li>
+</ol>
+
+<p>This audit is your starting point. Don't design a system in a vacuum — design one that fixes real problems.</p>
+
+<h2>Step 2: Define Your Tokens</h2>
+
+<p>Design tokens are the atomic values that everything else builds on. Start here:</p>
+
+<h3>Color</h3>
+<p>Define a color scale, not just individual colors. I use a 50–950 scale (like Tailwind) for each hue. Then create semantic aliases — <code>--color-primary</code>, <code>--color-surface</code>, <code>--color-text-muted</code> — that reference the scale. When you need dark mode or a brand refresh, you change the aliases, not every component.</p>
+
+<h3>Spacing</h3>
+<p>Use a consistent scale. I like 4px base with a geometric progression: 4, 8, 12, 16, 24, 32, 48, 64, 96. Every margin, padding, and gap in your system should come from this scale.</p>
+
+<h3>Typography</h3>
+<p>Define a type scale with clear hierarchy: Display, H1, H2, H3, Body, Small, Tiny. Each level gets a size, weight, line height, and letter spacing. No ad-hoc font sizes anywhere in the product.</p>
+
+<h2>Step 3: Build Core Components</h2>
+
+<p>Don't try to build everything at once. Start with the five components you use most:</p>
+
+<ol>
+<li><strong>Button</strong> — Primary, secondary, ghost, destructive. With sizes and states.</li>
+<li><strong>Input</strong> — Text, select, checkbox, radio, textarea. With labels, help text, and error states.</li>
+<li><strong>Card</strong> — A flexible container with header, body, footer slots.</li>
+<li><strong>Modal/Dialog</strong> — Overlay with focus trap and escape handling.</li>
+<li><strong>Navigation</strong> — Header, sidebar, breadcrumbs, tabs.</li>
+</ol>
+
+<p>Each component needs a Figma component with proper variants, a coded component with matching props, and documentation on when to use it.</p>
+
+<h2>Step 4: Tooling in 2026</h2>
+
+<ul>
+<li><strong>Design:</strong> Figma with Variables for tokens</li>
+<li><strong>Code:</strong> React + TypeScript + Tailwind CSS v4</li>
+<li><strong>Documentation:</strong> Storybook 8 for interactive component docs</li>
+<li><strong>Testing:</strong> Playwright for visual regression, axe-core for accessibility</li>
+</ul>
+
+<p>The biggest shift: Tailwind v4's CSS-first configuration means your design tokens <em>are</em> your CSS variables. Define once, use everywhere.</p>
+
+<h2>Step 5: Governance</h2>
+
+<p>A design system without governance is just a component library that gets ignored. For small teams, keep it light: a shared channel, a monthly review, and a CHANGELOG. Contribution guidelines, review process, versioning, and deprecation plans round it out.</p>
+
+<h2>Common Mistakes</h2>
+
+<ul>
+<li><strong>Over-engineering early</strong> — Don't build 47 button variants before you ship a product.</li>
+<li><strong>Designing for Figma, not for code</strong> — If Figma components don't map to coded components, the system diverges.</li>
+<li><strong>Ignoring accessibility</strong> — Bake it in from day one. Retrofitting WCAG compliance is 10x harder.</li>
+<li><strong>No dark mode planning</strong> — Use semantic tokens now. It's nearly free upfront and painful to retrofit.</li>
+</ul>
+
+<h2>The Payoff</h2>
+
+<p>A well-built design system pays dividends forever: new pages go from days to hours, design reviews focus on UX not pixels, new team members ship consistent UI from day one, and brand refreshes become a token update rather than a full rebuild.</p>
+
+<p>Building a product and need a design system? <a href="/shop/services">I can help</a>.</p>
+    `,
+  },
+  "typography-rules": {
+    title: "Typography Rules Every Designer Should Know",
+    tag: "Typography",
+    date: "January 2026",
+    readTime: "7 min read",
+    content: `
+<p>Typography is the foundation of design. Get it right and everything else falls into place. Get it wrong and no amount of beautiful imagery or clever layout will save you. Here are the rules I live by.</p>
+
+<h2>1. Hierarchy Is Everything</h2>
+
+<p>Every piece of text on a page exists in a hierarchy. The reader's eye should flow naturally from most important to least important, without thinking about it.</p>
+
+<p>You create hierarchy with four tools, in order of effectiveness:</p>
+<ol>
+<li><strong>Size</strong> — The most obvious. Bigger = more important.</li>
+<li><strong>Weight</strong> — Bold draws the eye before regular weight.</li>
+<li><strong>Color/contrast</strong> — High contrast text reads as primary. Muted text reads as secondary.</li>
+<li><strong>Position</strong> — Top and left are read first (in LTR languages).</li>
+</ol>
+
+<p>The mistake most people make: using all four at once on one level, leaving no tools to distinguish secondary from tertiary content.</p>
+
+<h2>2. Choose Two Typefaces. Maximum.</h2>
+
+<p>One for headings, one for body. That's it. If you're using three or more, you almost certainly don't need them — you need better use of weight, size, and spacing within fewer families.</p>
+
+<p>Safe pairings that always work:</p>
+<ul>
+<li><strong>Geometric sans + humanist sans:</strong> Inter + Source Sans Pro</li>
+<li><strong>Serif + sans-serif:</strong> Playfair Display + Inter</li>
+<li><strong>Monospace + sans-serif:</strong> JetBrains Mono + Inter (great for dev/tech brands)</li>
+</ul>
+
+<p>The cheat: one well-designed typeface with a full weight range (thin through black) can do everything. Inter, Satoshi, and General Sans are all excellent solo choices.</p>
+
+<h2>3. Line Length: 45–75 Characters</h2>
+
+<p>This is the single most ignored typography rule, and it has the biggest impact on readability. The ideal line length for body text is <strong>45–75 characters per line</strong>. For a 16px font, that's roughly <code>max-width: 65ch</code>.</p>
+
+<p>At wider lengths, the eye struggles to track back to the start of the next line. At narrower lengths, constant line-breaking disrupts reading flow.</p>
+
+<h2>4. Line Height Is Not One-Size-Fits-All</h2>
+
+<ul>
+<li><strong>Body text (14–18px):</strong> 1.5–1.7 line height</li>
+<li><strong>Large text (24–36px):</strong> 1.2–1.4 line height</li>
+<li><strong>Display text (48px+):</strong> 1.0–1.2 line height</li>
+</ul>
+
+<p>The pattern: as font size increases, line height ratio <em>decreases</em>. Large display text with 1.6 line height has gaps you could drive a truck through. Small body text at 1.2 feels suffocating.</p>
+
+<h2>5. Whitespace > Dividers</h2>
+
+<p>If you're reaching for a horizontal rule or border to separate sections, try removing it and adding more space instead. In most cases, 48–64px of vertical space creates a cleaner separation than a 1px line. Dividers add visual noise. Space adds clarity.</p>
+
+<h2>6. Alignment: Pick One and Commit</h2>
+
+<p>Left-aligned text is the default for a reason — it creates a consistent left edge the eye can track. Center-aligned works for short blocks (headlines, CTAs) but becomes unreadable for paragraphs.</p>
+
+<p>The cardinal sin: mixing left-aligned and center-aligned text in the same section.</p>
+
+<h2>7. Contrast Ratios Matter</h2>
+
+<p>WCAG 2.1 requires <strong>4.5:1</strong> contrast for normal text and <strong>3:1</strong> for large text. Light grey on white might look "clean" but if it fails contrast ratios, it's inaccessible.</p>
+
+<p>On dark backgrounds, pure white on pure black has <em>too much</em> contrast and causes eye strain. Soften it: use zinc-100 on zinc-950 for comfortable reading.</p>
+
+<h2>8. Responsive Typography</h2>
+
+<p>A 72px heading that looks commanding on desktop becomes a wall of text on mobile. Use <code>clamp()</code> for fluid scaling:</p>
+
+<pre><code>h1 { font-size: clamp(2rem, 5vw, 4rem); }</code></pre>
+
+<h2>9. Don't Stretch, Squish, or Fake It</h2>
+
+<p>Never horizontally scale a typeface. Never apply faux bold or faux italic. If you need bold, load the bold weight. Real type designers spend months perfecting weight distribution — don't let CSS undo that in one line.</p>
+
+<h2>10. Read Your Own Design</h2>
+
+<p>The ultimate typography test: actually read the text. Not skim — <em>read</em>. Out loud if possible. If you stumble, lose your place, or feel fatigued, the typography needs work.</p>
+
+<p>Good typography is invisible. The reader absorbs the content without ever thinking about the typeface, spacing, or layout. That's the goal.</p>
+
+<p>Working on a project that needs typographic polish? <a href="/shop/services">I'd love to help</a>.</p>
+    `,
+  },
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

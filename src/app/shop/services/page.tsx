@@ -24,7 +24,14 @@ const cyberServices = [
   { name: "Red Team Assessment", desc: "Simulated adversary attack scenarios to test your defenses under realistic conditions.", from: 5000, amount: 500000, duration: "2–4 weeks" },
 ];
 
-const allServices = [...designServices, ...aiServices, ...cyberServices];
+const embeddedServices = [
+  { name: "Board Bring-Up", desc: "From bare board to booting OS — power sequencing, peripheral validation, BSP development, and hardware/software integration.", from: 5000, amount: 500000, duration: "2–6 weeks" },
+  { name: "RTOS Development", desc: "Real-time application development on FreeRTOS, VxWorks, and bare-metal platforms. Low-power design and deterministic performance.", from: 4000, amount: 400000, duration: "2–8 weeks" },
+  { name: "Embedded Linux", desc: "Custom Linux BSP, device driver development, Yocto/Buildroot builds, and production image optimization.", from: 4000, amount: 400000, duration: "2–6 weeks" },
+  { name: "Firmware Development", desc: "Production firmware for ARM Cortex-M/A, RISC-V, and legacy architectures. Bootloaders, OTA updates, and field-proven reliability.", from: 3500, amount: 350000, duration: "2–8 weeks" },
+];
+
+const allServices = [...designServices, ...aiServices, ...cyberServices, ...embeddedServices];
 
 export default function ServicesPage() {
   const [form, setForm] = useState({ name: "", email: "", company: "", service: "", description: "", budget: "", timeline: "" });
@@ -120,6 +127,24 @@ export default function ServicesPage() {
       </div>
 
 
+      {/* Embedded Software Development */}
+      <div id="embedded" className="mb-20">
+        <div className="flex items-center gap-3 mb-2">
+          <Cpu className="text-amber-400" size={24} />
+          <h2 className="text-2xl font-bold text-white">Embedded Software Development</h2>
+        </div>
+        <p className="text-zinc-500 text-sm mb-6">Two decades of embedded systems — from satellite modems to biomedical devices to defense platforms. Low-power design, RTOS, and embedded Linux.</p>
+        <div className="space-y-4 mb-6">
+          {embeddedServices.map((svc) => <ServiceCard key={svc.name} svc={svc} />)}
+        </div>
+        <Link
+          href="/shop/services/embedded"
+          className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 text-sm font-medium transition-colors"
+        >
+          Learn more about our embedded services →
+        </Link>
+      </div>
+
       {/* Cybersecurity & Penetration Testing */}
       <div id="cyber" className="mb-20">
         <div className="flex items-center gap-3 mb-2">
@@ -198,6 +223,9 @@ export default function ServicesPage() {
                   </optgroup>
                   <optgroup label="AI & Automation">
                     {aiServices.map((s) => <option key={s.name} value={s.name}>{s.name}</option>)}
+                  </optgroup>
+                  <optgroup label="Embedded Systems">
+                    {embeddedServices.map((s) => <option key={s.name} value={s.name}>{s.name}</option>)}
                   </optgroup>
                   <optgroup label="Cybersecurity">
                     {cyberServices.map((s) => <option key={s.name} value={s.name}>{s.name}</option>)}

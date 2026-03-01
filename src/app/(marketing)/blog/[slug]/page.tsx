@@ -3,6 +3,127 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 const blogPosts: Record<string, { title: string; tag: string; date: string; readTime: string; content: string }> = {
+  "embedded-board-bring-up": {
+    title: "The Art of Embedded Board Bring-Up",
+    tag: "Embedded",
+    date: "March 2026",
+    readTime: "12 min read",
+    content: `
+<p>A box arrives from the fab house. Inside is a stack of freshly manufactured PCBs — your design, realized in copper and silicon. They smell faintly of flux. They are, at this moment, the most expensive paperweights you own.</p>
+
+<p>Board bring-up is the process of turning those paperweights into working systems. After twenty years of doing this — on satellite modems, military SIGINT platforms, biomedical devices, and telemetry units — I can tell you it's equal parts science, art, and profanity.</p>
+
+<p>Here's how it actually works.</p>
+
+<h2>Phase 1: Don't Blow It Up</h2>
+
+<p>Before you power anything on, you verify you won't destroy it. This isn't paranoia — it's experience. I've seen a reversed polarity protection diode that wasn't in the BOM take out an entire $15,000 prototype run.</p>
+
+<h3>Visual Inspection</h3>
+<p>Magnifying glass or microscope. Check every component against the BOM. Look for solder bridges, missing parts, tombstoned passives, and backwards ICs. The assembler is good, but they're not perfect — especially on Rev A boards with new footprints.</p>
+
+<h3>Continuity and Short Checks</h3>
+<p>Before any power is applied: check every power rail for shorts to ground. Use a multimeter. Check VCC to GND on every voltage domain. If you find a short, find it <em>now</em> — not after you've cooked a regulator.</p>
+
+<h3>Power Rail Sequencing</h3>
+<p>Modern SoCs and FPGAs have strict power sequencing requirements. Core voltage before I/O voltage. PLL supply before digital. Some parts will latch up permanently if you get this wrong. Read the datasheet power-up sequence section three times, then read it again.</p>
+
+<p>Bring up each rail individually with a bench supply and current limiting. Watch the current draw. Know what quiescent current you expect. If the 1.0V core rail is drawing 500mA before the processor is even configured, something is very wrong.</p>
+
+<h2>Phase 2: Signs of Life</h2>
+
+<p>The board is powered. Nothing is smoking. Time for signs of life.</p>
+
+<h3>Clock Verification</h3>
+<p>Put an oscilloscope probe on every crystal and oscillator output. Verify frequency, amplitude, and stability. Clocks are the heartbeat of every digital system — if the clocks aren't right, nothing downstream will work, and the failure modes will be baffling.</p>
+
+<h3>The First UART</h3>
+<p>The most beautiful moment in board bring-up: the first characters on a serial console. Connect a USB-to-UART adapter, open a terminal at the right baud rate (usually 115200, but check), and power cycle. If you see bootloader output, you're in business.</p>
+
+<p>If you see garbage characters, your baud rate is wrong or your TX/RX are swapped. If you see nothing, the processor isn't executing — go back to clocks and reset circuitry.</p>
+
+<h3>JTAG/SWD Connection</h3>
+<p>Connect your debug probe (J-Link, ST-Link, or FTDI-based). If you can halt the core and read registers, the processor is alive. This is your lifeline for everything that follows. If JTAG doesn't connect, check:</p>
+
+<ul>
+<li>JTAG pins aren't being driven by something else</li>
+<li>Reset is properly deasserted</li>
+<li>Boot mode pins are set correctly</li>
+<li>The debug probe supports the target voltage</li>
+</ul>
+
+<h2>Phase 3: Peripheral Bring-Up</h2>
+
+<p>Now the systematic work begins. Bring up each peripheral one at a time. Don't try to get everything working simultaneously — that's how you end up debugging three problems at once and solving none of them.</p>
+
+<h3>Memory Controller</h3>
+<p>If you have external DDR, this is often the hardest part. DDR initialization involves dozens of timing parameters that must match your specific memory chips and PCB trace lengths. Use the silicon vendor's memory configuration tool if one exists. If not, prepare for hours with the DDR timing spreadsheet.</p>
+
+<p>Run memory tests — not just a quick read/write, but a proper walking-ones pattern across the full address space. Marginal DDR timing will pass quick tests and fail catastrophically under load.</p>
+
+<h3>The Peripheral Checklist</h3>
+<p>Work through each peripheral methodically:</p>
+
+<ul>
+<li><strong>UART</strong> — Already done (hopefully). Test all ports, not just console.</li>
+<li><strong>SPI</strong> — Connect a logic analyzer. Verify clock polarity/phase (CPOL/CPHA). Talk to a known-good SPI device (flash, ADC).</li>
+<li><strong>I²C</strong> — Scan the bus. Every device should ACK at its expected address. Check pull-up resistor values — too high and the bus is slow, too low and weak drivers can't pull down.</li>
+<li><strong>Ethernet</strong> — PHY negotiation first (check link LED), then ping. MDIO configuration must match the PHY's register map. Don't forget the MAC address.</li>
+<li><strong>USB</strong> — Start with device mode (easier to debug). Host mode adds hub complexity.</li>
+<li><strong>GPIO</strong> — Toggle every pin, verify with scope. Check for pins that are supposed to be outputs but are stuck (hardware conflict).</li>
+<li><strong>ADC/DAC</strong> — Apply known voltages, verify readings. Check reference voltage accuracy.</li>
+<li><strong>PWM/Timers</strong> — Verify frequency and duty cycle with scope.</li>
+</ul>
+
+<h2>Phase 4: Operating System</h2>
+
+<p>With peripherals validated, it's time to bring up the operating system. The choice depends on the application:</p>
+
+<h3>Bare Metal / Super Loop</h3>
+<p>For simple, single-purpose devices. A main loop with interrupt-driven I/O. Fast startup, deterministic timing, minimal memory footprint. When your MCU has 64KB of flash, this is your only option — and it's a perfectly valid one.</p>
+
+<h3>FreeRTOS</h3>
+<p>The workhorse of embedded RTOS. Lightweight, well-documented, and runs on everything from Cortex-M0 to Cortex-A. Task-based concurrency with priorities, queues, and semaphores. Free (as in beer and speech). I've used it on dozens of products.</p>
+
+<p>Key decisions at bring-up: tick rate (1ms is standard), heap allocation scheme (heap_4 for most cases), and stack sizes (always bigger than you think — stack overflows in RTOS are the #1 cause of mysterious crashes).</p>
+
+<h3>VxWorks</h3>
+<p>When reliability requirements are non-negotiable — aerospace, defense, medical. POSIX-compliant, deterministic, and certified to DO-178B/C. The BSP development is more involved than FreeRTOS, but you get a battle-tested kernel with decades of heritage in safety-critical systems.</p>
+
+<h3>Embedded Linux</h3>
+<p>When you need the full ecosystem — networking stacks, filesystems, USB device classes, package management. Custom kernel configuration, device tree creation, and root filesystem build (Yocto or Buildroot). Boot time optimization matters — nobody wants to wait 45 seconds for a thermostat to boot.</p>
+
+<h2>Phase 5: Integration and Validation</h2>
+
+<p>Individual peripherals work. The OS boots. Now make them all work <em>together</em> under real-world conditions.</p>
+
+<h3>Thermal Testing</h3>
+<p>Run the system at full load in a temperature chamber. Watch for frequency throttling, memory errors, and peripheral failures at temperature extremes. The datasheet says -40°C to +85°C, but that assumes perfect layout and decoupling. Your board isn't perfect.</p>
+
+<h3>Power Profiling</h3>
+<p>Measure actual power consumption in every operating mode. Sleep, idle, active, peak. Compare to your power budget. For battery-powered devices, this is where you discover that the WiFi module's sleep current is 10x the datasheet value because of a floating enable pin.</p>
+
+<h3>EMI Pre-Scan</h3>
+<p>Before formal compliance testing, do a pre-scan with a near-field probe. Find the noisy spots now, when you can still add ferrites and adjust layouts. Failing EMI at the test lab costs $5,000+ per re-test.</p>
+
+<h2>Lessons From Twenty Years</h2>
+
+<ul>
+<li><strong>Read the errata.</strong> Every silicon has bugs. The errata sheet is as important as the datasheet.</li>
+<li><strong>Keep a lab notebook.</strong> Document everything — every measurement, every configuration change, every weird behavior. Future you will thank present you.</li>
+<li><strong>Current limit everything.</strong> Bench supplies should always have current limiting set before power-on. Always.</li>
+<li><strong>One change at a time.</strong> Change one thing, test, observe. Never change three things and wonder which one fixed (or broke) it.</li>
+<li><strong>Trust the scope, not the debugger.</strong> When hardware and software disagree, the oscilloscope tells the truth.</li>
+<li><strong>The problem is always in the last place you look</strong> — because you stop looking. But also, it's usually a ground issue.</li>
+</ul>
+
+<h2>The Payoff</h2>
+
+<p>There's a unique satisfaction in board bring-up that software-only engineers never experience. You're bridging the physical and digital worlds. When that first UART message prints, when the Ethernet link LED blinks, when the RTOS starts scheduling tasks on hardware you helped design — that's engineering at its most tangible.</p>
+
+<p>If you have a board that needs software, or a design that needs embedded expertise, <a href="/shop/services/embedded">let's talk</a>. I've been doing this for two decades, across satellite modems, defense platforms, biomedical instruments, and everything in between. And I still get excited when the scope shows a clean clock edge.</p>
+    `,
+  },
   "what-is-openclaw": {
     title: "What Is OpenClaw and How to Set It Up",
     tag: "AI",
@@ -535,7 +656,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <Link href="/blog" className="inline-flex items-center gap-2 text-zinc-500 hover:text-white text-sm mb-8 transition-colors">
         <ArrowLeft size={14} /> Back to Blog
       </Link>
-      <span className={`text-xs font-medium ${post.tag === "AI" ? "text-emerald-400" : "text-violet-400"}`}>{post.tag}</span>
+      <span className={`text-xs font-medium ${post.tag === "AI" ? "text-emerald-400" : post.tag === "Embedded" ? "text-amber-400" : "text-violet-400"}`}>{post.tag}</span>
       <h1 className="text-4xl font-bold text-white mt-2 mb-2">{post.title}</h1>
       <p className="text-zinc-500 text-sm mb-10">{post.date} · {post.readTime}</p>
       <div

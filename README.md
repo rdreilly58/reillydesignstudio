@@ -267,3 +267,10 @@ Blog posts are currently stored as inline HTML in the `[slug]/page.tsx` file. Fu
 - **Explainer:** [/shop/services/cybersecurity](https://reillydesignstudio.com/shop/services/cybersecurity)
 - **Offerings:** Penetration Testing ($3K), Security Audit ($2K), Red Team Assessment ($5K)
 - **Open Source:** [nmap-static-binaries](https://github.com/rdreilly58/nmap-static-binaries)
+
+## Homepage Featured Work
+
+- **Lucian & Gideon's Coloring Fun** — App Design tag, real site screenshot, links to `/portfolio/lucian-and-gideon` case study
+- **Brand Identity** — Apex Co. (placeholder)
+- **E-Commerce UX** — ShopLocal (placeholder)
+- Featured work cards support images with gradient overlay and both internal/external links

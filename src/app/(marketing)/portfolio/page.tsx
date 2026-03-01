@@ -15,7 +15,7 @@ const allWork = [
     featured: true,
   },
   { title: "Brand Identity", client: "Apex Co.", tag: "Branding", slug: "apex-brand-identity", year: 2025 },
-  { title: "E-Commerce UX", client: "ShopLocal", tag: "UI/UX", slug: "shoplocal-ux", year: 2025 },
+  { title: "ReillyDesignStudio.com", client: "reillydesignstudio.com", tag: "Full-Stack", slug: "reilly-design-studio", year: 2026, image: "/portfolio/rds-homepage.jpg" },
   { title: "Print Series", client: "Gallery 44", tag: "Print", slug: "gallery-44-print", year: 2025 },
   { title: "Motion Identity", client: "Pulse Media", tag: "Motion", slug: "pulse-motion", year: 2024 },
   { title: "Packaging System", client: "Harvest Co.", tag: "Packaging", slug: "harvest-packaging", year: 2024 },

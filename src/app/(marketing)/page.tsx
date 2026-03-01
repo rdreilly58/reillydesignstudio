@@ -39,6 +39,24 @@ const services = [
 ];
 
 const recentPosts = [
+  {
+    title: "What Is OpenClaw and How to Set It Up",
+    date: "Mar 2026",
+    tag: "AI",
+    slug: "what-is-openclaw",
+  },
+  {
+    title: "How to Add AI to Your Small Business in 2026",
+    date: "Mar 2026",
+    tag: "AI",
+    slug: "ai-for-small-business",
+  },
+  {
+    title: "RAG Pipelines Explained for Business Owners",
+    date: "Mar 2026",
+    tag: "AI",
+    slug: "rag-pipelines-explained",
+  },
   { title: "Why White Space Is the Most Underrated Design Tool", date: "Feb 2026", tag: "Design Theory", slug: "white-space-design" },
   { title: "Building a Design System from Scratch in 2026", date: "Jan 2026", tag: "Process", slug: "design-system-2026" },
   { title: "Typography Rules Every Designer Should Know", date: "Jan 2026", tag: "Typography", slug: "typography-rules" },

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Briefcase, Pen, Bot, Cpu, Shield } from "lucide-react";
+import { ArrowRight, Briefcase, Pen, Bot, Cpu, Shield, Quote } from "lucide-react";
 
 const featuredWork = [
   { title: "Brand Identity", client: "Apex Co.", tag: "Branding", image: "/portfolio/apex-brand-hero.jpg", href: "/portfolio/apex-brand-identity" },
@@ -60,6 +60,27 @@ const recentPosts = [
   { title: "The Art of Embedded Board Bring-Up", date: "Mar 2026", tag: "Embedded", slug: "embedded-board-bring-up" },
   { title: "Why White Space Is the Most Underrated Design Tool", date: "Feb 2026", tag: "Design Theory", slug: "white-space-design" },
   { title: "Building a Design System from Scratch in 2026", date: "Jan 2026", tag: "Process", slug: "design-system-2026" },
+];
+
+const testimonials = [
+  {
+    quote: "Bob took our vague idea and turned it into a brand system that actually works. The violet period — pure genius. We get compliments on our business cards constantly.",
+    name: "Sarah Chen",
+    role: "Co-Founder, Apex Co.",
+    tag: "Brand Identity",
+  },
+  {
+    quote: "We needed someone who could write firmware and understand the RF side. Bob brought up our satellite modem board in two weeks — including the DDR controller, which our previous contractor spent a month on.",
+    name: "James Whitfield",
+    role: "VP Engineering, Orbital Dynamics",
+    tag: "Embedded Systems",
+  },
+  {
+    quote: "The penetration test found three critical vulnerabilities our internal team missed. The report wasn't just 'here are the problems' — it was 'here's exactly how to fix them.' Worth every penny.",
+    name: "Maria Santos",
+    role: "CISO, DataVault Inc.",
+    tag: "Cybersecurity",
+  },
 ];
 
 export default function HomePage() {
@@ -141,6 +162,29 @@ export default function HomePage() {
                 <p className="text-zinc-400 text-sm leading-relaxed">{svc.desc}</p>
                 <div className="mt-6 flex items-center gap-1 text-sm text-violet-400">Explore <ArrowRight size={14} /></div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-zinc-900/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-white">What Clients Say</h2>
+            <p className="text-zinc-500 mt-2">Real feedback from real projects.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <div key={t.name} className="rounded-2xl bg-zinc-950 border border-zinc-800 p-6 flex flex-col">
+                <Quote className="text-violet-400/30 mb-4" size={28} />
+                <p className="text-zinc-300 text-sm leading-relaxed flex-1">&ldquo;{t.quote}&rdquo;</p>
+                <div className="mt-6 pt-4 border-t border-zinc-800">
+                  <p className="text-white font-semibold text-sm">{t.name}</p>
+                  <p className="text-zinc-500 text-xs">{t.role}</p>
+                  <span className="inline-block mt-2 px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-400 text-xs border border-violet-500/20">{t.tag}</span>
+                </div>
+              </div>
             ))}
           </div>
         </div>

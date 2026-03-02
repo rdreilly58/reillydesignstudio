@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import Stripe from "stripe";
+import { orderNotification } from "@/lib/notify";
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -29,6 +30,13 @@ export async function POST(req: NextRequest) {
           stripePaymentId: session.payment_intent as string,
         },
       });
+
+      // Notify admin
+      orderNotification({
+        customerEmail: session.customer_details?.email || session.customer_email || "unknown",
+        amount: session.amount_total || 0,
+        service: serviceName || "Order",
+      }).catch(() => {});
 
       // If this was a quote payment, update the quote
       if (quoteId) {

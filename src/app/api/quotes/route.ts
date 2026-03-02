@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { quoteNotification } from "@/lib/notify";
 import { z } from "zod";
 
 const quoteSchema = z.object({
@@ -17,6 +18,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const data = quoteSchema.parse(body);
     const quote = await prisma.quote.create({ data });
+    quoteNotification(data).catch(() => {}); // best-effort
     return NextResponse.json({ success: true, id: quote.id }, { status: 201 });
   } catch (err: any) {
     console.error("[quotes] POST error:", err?.message || err);

@@ -304,3 +304,19 @@ Blog posts are currently stored as inline HTML in the `[slug]/page.tsx` file. Fu
 - Twitter cards: summary_large_image
 - Robots: full indexing with googleBot directives
 - Per-page metadata via layout.tsx: contact, services, portfolio, blog
+
+### Testimonials (Homepage)
+- 3 client testimonials: Apex Co. (branding), Orbital Dynamics (embedded), DataVault (cybersecurity)
+- Quote cards with attribution, role, and service tag
+
+### About Page
+- **URL:** [/about](https://reillydesignstudio.com/about)
+- Bio, quick facts (Reston VA, MIT, 20+ years), 4 capability cards
+- Career timeline (2004–2026), domain experience tags
+- Resume download link (needs PDF at `public/resume/bob-reilly-resume.pdf`)
+- Added "About" to main navigation
+
+### Email Notifications
+- `src/lib/notify.ts` — Zoho SMTP via nodemailer (best-effort, silent fallback)
+- Triggered on: quote submissions, contact form, Stripe order completion
+- Requires `SMTP_PASS` env var (Zoho app password) to activate

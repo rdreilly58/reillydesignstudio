@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { contactNotification } from "@/lib/notify";
 
 export async function POST(req: Request) {
   try {
@@ -19,6 +20,7 @@ export async function POST(req: Request) {
       },
     });
 
+    contactNotification({ name, email, message }).catch(() => {}); // best-effort
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Contact form error:", error);

@@ -24,6 +24,8 @@ export async function notifyAdmin(options: NotifyOptions): Promise<boolean> {
     const user = process.env.SMTP_USER || FROM_EMAIL;
     const pass = process.env.SMTP_PASS || "xye1MPMmPvXz";
 
+    console.log(`[notify] SMTP config: host=${host}, port=${port}, user=${user}, pass=${pass ? "SET(" + pass.length + " chars)" : "EMPTY"}`);
+
     if (!pass) {
       console.log("[notify] SMTP_PASS not set, skipping email notification");
       return false;
@@ -34,9 +36,13 @@ export async function notifyAdmin(options: NotifyOptions): Promise<boolean> {
       port,
       secure: port === 465,
       auth: { user, pass },
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 15000,
     });
 
-    await transporter.sendMail({
+    console.log(`[notify] Attempting to send: "${subject}" to ${to}`);
+    const result = await transporter.sendMail({
       from: `"Reilly Design Studio" <${FROM_EMAIL}>`,
       to,
       subject,
@@ -44,10 +50,11 @@ export async function notifyAdmin(options: NotifyOptions): Promise<boolean> {
       html: html || text.replace(/\n/g, "<br>"),
     });
 
-    console.log(`[notify] Email sent: ${subject}`);
+    console.log(`[notify] Email sent: ${subject}`, JSON.stringify(result));
     return true;
-  } catch (error) {
-    console.error("[notify] Failed to send email:", error);
+  } catch (error: any) {
+    console.error("[notify] Failed to send email:", error?.message, error?.code, error?.responseCode);
+    console.error("[notify] Full error:", JSON.stringify(error, Object.getOwnPropertyNames(error)));
     return false;
   }
 }

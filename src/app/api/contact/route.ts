@@ -20,7 +20,11 @@ export async function POST(req: Request) {
       },
     });
 
-    contactNotification({ name, email, message }).catch(() => {}); // best-effort
+    const emailSent = await contactNotification({ name, email, message }).catch((err) => {
+      console.error("[contact] Email notification failed:", err);
+      return false;
+    });
+    console.log("[contact] Form submitted, emailSent:", emailSent);
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Contact form error:", error);

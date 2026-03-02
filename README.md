@@ -285,3 +285,22 @@ Blog posts are currently stored as inline HTML in the `[slug]/page.tsx` file. Fu
 - **URL:** [/portfolio/apex-brand-identity](https://reillydesignstudio.com/portfolio/apex-brand-identity)
 - **Sections:** Brief, Discovery & Strategy, The Mark (dark/light lockups), Color System (4 swatches), Typography (3-tier system), Collateral (6 items), Process & Timeline, Design Decisions, Result
 - **Demonstrates:** Brand strategy, logo design, type system, color theory, collateral design, guidelines documentation
+
+## Site Improvements (Mar 2)
+
+### Enhanced Contact Page
+- Two-column layout: contact info cards + form
+- Email, location (Reston, VA), response time (24h), quote link
+- Form submissions stored in DB as "General Inquiry" quotes
+- API route: `/api/contact`
+
+### Blog Hero Icons
+- Each blog post has an emoji hero thumbnail in the index
+- Posts display with icon + text side-by-side layout
+
+### SEO & Metadata
+- Root layout: enhanced description, keywords, authors, creator
+- OpenGraph: title, description, url, locale for all pages
+- Twitter cards: summary_large_image
+- Robots: full indexing with googleBot directives
+- Per-page metadata via layout.tsx: contact, services, portfolio, blog

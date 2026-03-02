@@ -21,13 +21,40 @@ export const metadata: Metadata = {
     template: "%s | ReillyDesignStudio",
   },
   description:
-    "Professional design studio offering custom design work, digital products, physical merchandise, and creative services. Portfolio, shop, and blog.",
+    "Design, AI, embedded systems, and cybersecurity services. 20+ years of engineering expertise — from brand identity to board bring-up. Based in Reston, VA.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://reillydesignstudio.com"
   ),
+  keywords: [
+    "design studio", "AI consulting", "embedded systems", "cybersecurity",
+    "penetration testing", "brand identity", "web development", "Next.js",
+    "OpenClaw", "FreeRTOS", "VxWorks", "Reston VA", "software engineering",
+  ],
+  authors: [{ name: "Bob Reilly", url: "https://reillydesignstudio.com" }],
+  creator: "Reilly Design Studio LLC",
   openGraph: {
     type: "website",
     siteName: "ReillyDesignStudio",
+    title: "ReillyDesignStudio™ — Design That Moves People™",
+    description: "Design, AI, embedded systems, and cybersecurity services. 20+ years of engineering expertise.",
+    url: "https://reillydesignstudio.com",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ReillyDesignStudio™ — Design That Moves People™",
+    description: "Design, AI, embedded systems, and cybersecurity services. 20+ years of engineering expertise.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

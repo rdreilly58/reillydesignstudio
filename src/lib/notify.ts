@@ -23,7 +23,7 @@ export async function notifyAdmin(options: NotifyOptions): Promise<boolean> {
     const host = process.env.SMTP_HOST || "smtp.zoho.com";
     const port = parseInt(process.env.SMTP_PORT || "465");
     const user = process.env.SMTP_USER || FROM_EMAIL;
-    const pass = process.env.SMTP_PASS;
+    const pass = process.env.SMTP_PASS || "xye1MPMmPvXz";
 
     if (!pass) {
       console.log("[notify] SMTP_PASS not set, skipping email notification");

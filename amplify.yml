@@ -16,6 +16,7 @@ frontend:
         - echo "STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET" >> .env.production
         - echo "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID" >> .env.production
         - echo "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET" >> .env.production
+        - echo "SMTP_PASS=$SMTP_PASS" >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next

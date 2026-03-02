@@ -1,3 +1,4 @@
+import nodemailer from "nodemailer";
 /**
  * Send notification emails via Zoho SMTP.
  * Falls back silently if SMTP is not configured — notifications are best-effort.
@@ -18,8 +19,6 @@ export async function notifyAdmin(options: NotifyOptions): Promise<boolean> {
 
   // Try Zoho SMTP via nodemailer if available
   try {
-    const nodemailer = await import("nodemailer");
-
     const host = process.env.SMTP_HOST || "smtp.zoho.com";
     const port = parseInt(process.env.SMTP_PORT || "465");
     const user = process.env.SMTP_USER || FROM_EMAIL;
@@ -30,7 +29,7 @@ export async function notifyAdmin(options: NotifyOptions): Promise<boolean> {
       return false;
     }
 
-    const transporter = nodemailer.default.createTransport({
+    const transporter = nodemailer.createTransport({
       host,
       port,
       secure: port === 465,

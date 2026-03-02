@@ -280,3 +280,8 @@ Blog posts are currently stored as inline HTML in the `[slug]/page.tsx` file. Fu
 - **Screenshots:** `public/portfolio/rds-homepage.jpg`, `public/portfolio/rds-services.jpg`
 - **Sections:** Story, Design Philosophy, Features (8), Tech Stack (15), Site Structure, Architecture Decisions, Business Stack
 - **Replaces:** E-Commerce UX / ShopLocal placeholder in homepage + portfolio grid
+
+### Apex Co. Brand Identity (Case Study)
+- **URL:** [/portfolio/apex-brand-identity](https://reillydesignstudio.com/portfolio/apex-brand-identity)
+- **Sections:** Brief, Discovery & Strategy, The Mark (dark/light lockups), Color System (4 swatches), Typography (3-tier system), Collateral (6 items), Process & Timeline, Design Decisions, Result
+- **Demonstrates:** Brand strategy, logo design, type system, color theory, collateral design, guidelines documentation

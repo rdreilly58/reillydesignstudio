@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Briefcase, Pen, Bot, Cpu, Shield } from "lucide-react";
 
 const featuredWork = [
-  { title: "Brand Identity", client: "Apex Co.", tag: "Branding", image: "/images/portfolio-1.jpg", href: "/portfolio/brand-identity" },
+  { title: "Brand Identity", client: "Apex Co.", tag: "Branding", image: "/images/portfolio-1.jpg", href: "/portfolio/apex-brand-identity" },
   { title: "ReillyDesignStudio.com", client: "reillydesignstudio.com", tag: "Full-Stack", image: "/portfolio/rds-homepage.jpg", href: "/portfolio/reilly-design-studio" },
   { title: "Lucian & Gideon's Coloring Fun", client: "lucianandgideon.com", tag: "App Design", image: "/portfolio/lucian-gideon-home.jpg", href: "/portfolio/lucian-and-gideon" },
 ];

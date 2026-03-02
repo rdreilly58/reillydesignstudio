@@ -20,12 +20,14 @@ export async function POST(req: Request) {
       },
     });
 
-    const emailSent = await contactNotification({ name, email, message }).catch((err) => {
-      console.error("[contact] Email notification failed:", err);
-      return false;
-    });
-    console.log("[contact] Form submitted, emailSent:", emailSent);
-    return NextResponse.json({ ok: true });
+    let emailSent = false;
+    let emailError: string | null = null;
+    try {
+      emailSent = await contactNotification({ name, email, message });
+    } catch (err: any) {
+      emailError = err?.message || String(err);
+    }
+    return NextResponse.json({ ok: true, emailSent, emailError });
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json({ error: "Failed to send" }, { status: 500 });

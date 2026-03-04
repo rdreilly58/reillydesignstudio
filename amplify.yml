@@ -17,6 +17,8 @@ frontend:
         - echo "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID" >> .env.production
         - echo "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET" >> .env.production
         - echo "SMTP_PASS=$SMTP_PASS" >> .env.production
+        - echo "NEXT_PUBLIC_GA_MEASUREMENT_ID=$NEXT_PUBLIC_GA_MEASUREMENT_ID" >> .env.production
+        - echo "NEXT_PUBLIC_CF_BEACON_TOKEN=$NEXT_PUBLIC_CF_BEACON_TOKEN" >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next

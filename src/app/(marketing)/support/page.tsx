@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { Monitor, Shield, Download, MessageSquare, Clock, Zap, Lock, Globe } from "lucide-react";
+import BookButton from "./BookButton";
 
 export const metadata: Metadata = {
   title: "Remote Support",
@@ -55,24 +56,30 @@ const services = [
   {
     name: "Quick Fix",
     price: "$95",
+    amount: 9500,
     unit: "per session",
     desc: "30-minute remote session for troubleshooting, configuration, or quick questions.",
     features: ["Up to 30 minutes", "Screen sharing + remote control", "Chat support during session"],
+    stripeDesc: "Remote Support — Quick Fix (30 min)",
   },
   {
     name: "Setup Session",
     price: "$195",
+    amount: 19500,
     unit: "per session",
     desc: "Full OpenClaw installation, configuration, and walkthrough on your machine.",
     features: ["Up to 2 hours", "OpenClaw install & config", "Channel setup (Telegram, Discord, etc.)", "Post-session documentation"],
     popular: true,
+    stripeDesc: "Remote Support — Setup Session (2 hrs)",
   },
   {
     name: "Managed Support",
     price: "$349",
+    amount: 34900,
     unit: "per month",
     desc: "Ongoing remote support with priority response and proactive monitoring.",
     features: ["Unlimited support sessions", "Priority response (< 4 hours)", "Proactive health checks", "Monthly status report"],
+    stripeDesc: "Remote Support — Managed Support (monthly)",
   },
 ];
 
@@ -147,7 +154,7 @@ export default function SupportPage() {
                 <span className="text-zinc-500 text-sm ml-1">/{service.unit}</span>
               </div>
               <p className="text-zinc-400 text-sm mb-6">{service.desc}</p>
-              <ul className="space-y-2 mt-auto">
+              <ul className="space-y-2 mb-6">
                 {service.features.map((f) => (
                   <li key={f} className="text-sm text-zinc-300 flex items-start gap-2">
                     <span className="text-emerald-400 mt-0.5">✓</span>
@@ -155,6 +162,18 @@ export default function SupportPage() {
                   </li>
                 ))}
               </ul>
+              <BookButton
+                serviceName={service.name}
+                amount={service.amount}
+                description={service.stripeDesc}
+                className={`mt-auto w-full py-2.5 rounded-lg font-medium text-sm transition-colors ${
+                  service.popular
+                    ? "bg-emerald-600 text-white hover:bg-emerald-500"
+                    : "border border-zinc-700 text-zinc-300 hover:border-zinc-500 hover:text-white"
+                }`}
+              >
+                Book Now
+              </BookButton>
             </div>
           ))}
         </div>

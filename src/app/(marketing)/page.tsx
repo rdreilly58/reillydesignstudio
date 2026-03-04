@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Briefcase, Pen, Bot, Cpu, Shield, Quote } from "lucide-react";
+import { ArrowRight, Briefcase, Pen, Bot, Cpu, Shield, Quote, Headset } from "lucide-react";
 
 const featuredWork = [
   { title: "Brand Identity", client: "Apex Co.", tag: "Branding", image: "/portfolio/apex-brand-hero.jpg", href: "/portfolio/apex-brand-identity" },
@@ -35,6 +35,13 @@ const services = [
     desc: "Vulnerability assessments, pen testing, and security hardening for your infrastructure and applications.",
     href: "/shop/services#cybersecurity",
     color: "from-red-500/20 to-red-600/5",
+  },
+  {
+    icon: Headset,
+    title: "Remote Support",
+    desc: "Secure, self-hosted remote desktop support. We connect to your screen, diagnose issues, and fix things in real time.",
+    href: "/support",
+    color: "from-sky-500/20 to-sky-600/5",
   },
 ];
 
@@ -150,9 +157,9 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-white">What I Offer</h2>
-            <p className="text-zinc-500 mt-2">From design to defense — four ways to work together.</p>
+            <p className="text-zinc-500 mt-2">From design to defense — five ways to work together.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {services.map((svc) => (
               <Link key={svc.title} href={svc.href} className={`group relative rounded-2xl p-8 bg-gradient-to-b ${svc.color} border border-zinc-800 hover:border-zinc-600 transition-all`}>
                 <div className="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">

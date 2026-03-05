@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = { title: "Blog" };
 
 const posts = [
+  { title: "AI Implementation for DC Area Businesses: What Actually Works in 2026", date: "Mar 2026", tag: "AI", slug: "ai-implementation-dc-businesses", hero: "🚀", excerpt: "Practical AI implementation guide for DC Metro businesses. Real ROI examples, costs, and implementation framework from an MIT engineer with 30+ years experience." },
   { title: "The Art of Embedded Board Bring-Up", date: "Mar 2026", tag: "Embedded", slug: "embedded-board-bring-up", hero: "🔧", excerpt: "What really happens when a new board arrives from the fab house. A practitioner's guide to the methodical (and occasionally profane) process of making hardware and software work together." },
   { title: "What Is OpenClaw and How to Set It Up", date: "Mar 2026", tag: "AI", slug: "what-is-openclaw", hero: "🤖", excerpt: "A practical guide to setting up your own AI assistant that manages email, calendar, messaging, and more — from an engineer who uses it daily." },
   { title: "How to Add AI to Your Small Business in 2026", date: "Mar 2026", tag: "AI", slug: "ai-for-small-business", hero: "💡", excerpt: "You don't need a data science team. Here's a no-nonsense guide to AI tools that actually deliver ROI for small businesses." },

@@ -50,6 +50,22 @@ model User {
   emailVerified DateTime?
   image         String?
   role          UserRole  @default(CUSTOMER)
+  
+  // Phase 1: Enhanced Customer Fields
+  companyName      String?
+  jobTitle         String?
+  phone            String?
+  website          String?
+  industry         String?
+  companySize      CompanySize?
+  leadSource       LeadSource?
+  customerType     CustomerType @default(PROSPECT)
+  lifetimeValue    Int?         // in cents
+  lastContactDate  DateTime?
+  preferredContact PreferredContact @default(EMAIL)
+  timezone         String?      @default("America/New_York")
+  notes            String?      @db.Text
+  
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -58,11 +74,54 @@ model User {
   orders           Order[]
   quotes           Quote[]
   digitalDownloads DigitalDownload[]
+  
+  // Phase 1: Customer Management Relations
+  contacts         CustomerContact[]
+  interactions     CustomerInteraction[]
+  tags             CustomerTag[]
 }
 
 enum UserRole {
   CUSTOMER
   ADMIN
+}
+
+// Phase 1: Customer Enhancement Enums
+enum CompanySize {
+  SOLO
+  SMALL_1_10
+  MEDIUM_11_50
+  LARGE_51_200
+  ENTERPRISE_200_PLUS
+}
+
+enum LeadSource {
+  WEBSITE
+  REFERRAL
+  LINKEDIN
+  GOOGLE_ADS
+  NETWORKING
+  COLD_OUTREACH
+  EXISTING_CLIENT
+  OTHER
+}
+
+enum CustomerType {
+  PROSPECT     // Initial interest
+  QUALIFIED    // Meets criteria
+  OPPORTUNITY  // Active sales process
+  CUSTOMER     // Paying customer
+  PARTNER      // Strategic relationship
+  DORMANT      // Inactive but keep
+}
+
+enum PreferredContact {
+  EMAIL
+  PHONE
+  TEXT
+  SLACK
+  TEAMS
+  WHATSAPP
 }
 
 // ─── Products ─────────────────────────────────────────────────────────────────
@@ -301,4 +360,91 @@ enum JobApplicationStatus {
   OFFER_ACCEPTED
   OFFER_DECLINED
   WITHDRAWN
+}
+
+// ─── Customer Management (Phase 1) ────────────────────────────────────────────
+
+model CustomerContact {
+  id              String  @id @default(cuid())
+  customerId      String
+  customer        User    @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  
+  firstName       String
+  lastName        String
+  fullName        String  // Computed: firstName + lastName
+  email           String?
+  phone           String?
+  jobTitle        String?
+  department      String?
+  
+  isPrimary       Boolean @default(false)
+  isDecisionMaker Boolean @default(false)
+  isTechnical     Boolean @default(false)
+  isBilling       Boolean @default(false)
+  
+  notes           String? @db.Text
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  interactions    CustomerInteraction[]
+  
+  @@unique([customerId, email]) // Prevent duplicate emails per customer
+}
+
+model CustomerInteraction {
+  id              String           @id @default(cuid())
+  customerId      String
+  customer        User             @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  contactId       String?
+  contact         CustomerContact? @relation(fields: [contactId], references: [id])
+  
+  type            InteractionType
+  subject         String
+  description     String           @db.Text
+  outcome         String?          @db.Text
+  
+  // Basic scheduling
+  scheduledDate   DateTime?
+  completedDate   DateTime?
+  
+  // Follow-up
+  followUpRequired Boolean         @default(false)
+  followUpDate     DateTime?
+  followUpNotes    String?
+  
+  // Metadata
+  createdBy       String           // User ID who logged this
+  source          String?          @default("manual") // "manual", "email", "calendar", etc.
+  
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model CustomerTag {
+  id          String @id @default(cuid())
+  customerId  String
+  customer    User   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  
+  tag         String
+  color       String @default("#3B82F6") // Hex color
+  
+  createdAt   DateTime @default(now())
+  
+  @@unique([customerId, tag]) // Prevent duplicate tags per customer
+}
+
+enum InteractionType {
+  EMAIL
+  PHONE_CALL
+  MEETING
+  VIDEO_CALL
+  TEXT_MESSAGE
+  DEMO
+  PROPOSAL_REVIEW
+  CONTRACT_DISCUSSION
+  CHECK_IN
+  FOLLOW_UP
+  OTHER
 }

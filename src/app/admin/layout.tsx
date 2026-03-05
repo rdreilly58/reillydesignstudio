@@ -13,6 +13,7 @@ const ADMIN_EMAILS = [
 const adminLinks = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/orders", label: "Orders" },
+  { href: "/admin/invoices", label: "Invoices" },
   { href: "/admin/products", label: "Products" },
   { href: "/admin/quotes", label: "Quotes" },
   { href: "/admin/blog", label: "Blog" },

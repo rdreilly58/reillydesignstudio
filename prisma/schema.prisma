@@ -233,3 +233,31 @@ model PortfolioItem {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
+
+// ─── Invoices ─────────────────────────────────────────────────────────────────
+
+model Invoice {
+  id              String        @id @default(cuid())
+  stripeInvoiceId String        @unique
+  customerName    String
+  customerEmail   String
+  amount          Int           // in cents
+  currency        String        @default("usd")
+  status          InvoiceStatus @default(DRAFT)
+  dueDate         DateTime?
+  paidAt          DateTime?
+  description     String?       @db.Text
+  lineItems       Json          // array of {description, amount, quantity}
+  stripeHostedUrl String?       // Stripe hosted invoice URL
+  qrCodeUrl       String?       @db.Text // QR code as data URL
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+enum InvoiceStatus {
+  DRAFT
+  OPEN
+  PAID
+  VOID
+  UNCOLLECTABLE
+}

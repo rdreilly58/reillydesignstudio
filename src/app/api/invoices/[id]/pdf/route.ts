@@ -4,7 +4,9 @@ import React from "react";
 import Stripe from "stripe";
 import { InvoicePDF } from "@/lib/pdf/InvoicePDF";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+function getStripeClient() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!);
+}
 
 export async function GET(
   request: NextRequest,
@@ -12,7 +14,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const invoice = await stripe.invoices.retrieve(id, {
+    const invoice = await getStripeClient().invoices.retrieve(id, {
       expand: ["lines"],
     });
 

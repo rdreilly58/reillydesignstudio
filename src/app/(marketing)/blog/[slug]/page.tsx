@@ -52,18 +52,22 @@ const blogPosts: Record<string, { title: string; tag: string; date: string; read
 
 <p>What started as a simple performance optimization turned into a complete infrastructure modernization that opens up new possibilities for AI-assisted productivity. The migration from JSON to PostgreSQL + AWS represents the kind of thoughtful engineering that transforms simple tools into enterprise platforms.</p>
 
-<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 my-8">
-  <p class="text-yellow-800"><strong>Ready to optimize your own data infrastructure?</strong> The complete implementation is available on GitHub, and I'm always happy to discuss database architecture and cloud migration strategies.</p>
+<div class="bg-violet-500/10 border border-violet-500/20 rounded-lg p-6 mb-8">
+  <h4 class="text-violet-400 font-semibold mb-2">🚀 Open Source Implementation</h4>
+  <p class="text-zinc-300 text-sm mb-3">The complete implementation is available on GitHub, including database schema, migration scripts, and AWS deployment templates.</p>
+  <p class="text-zinc-300 text-sm">Ready to optimize your own data infrastructure? I'm always happy to discuss database architecture and cloud migration strategies.</p>
 </div>
 
-<div class="bg-gray-50 border border-gray-300 rounded-lg p-6 my-8">
-  <h3 class="text-lg font-semibold mb-3">About the Author</h3>
-  <p><strong>Bob Reilly</strong> is a Senior Software Engineer at Peraton working on NRO SKYFIRE projects. With an MIT SMME '81 and SBME '79, he specializes in enterprise software architecture, cloud migration, and AI assistant integrations. Bob holds a TS/SCI clearance with CI polygraph and runs <a href="/" class="text-blue-600 hover:text-blue-800 underline">Reilly Design Studio LLC</a>, focusing on modern software solutions and database optimization.</p>
-  
-  <p class="mt-3"><strong>Connect with Bob:</strong><br/>
-  🌐 Website: <a href="/" class="text-blue-600 hover:text-blue-800 underline">reillydesignstudio.com</a><br/>
-  📧 Email: robert.reilly@alum.mit.edu<br/>
-  💼 LinkedIn: Connect for database and cloud architecture discussions</p>
+<div class="border-t border-zinc-800 pt-8 mt-12">
+  <div class="flex items-center gap-4">
+    <div class="w-12 h-12 bg-gradient-to-br from-violet-400 to-violet-600 rounded-full flex items-center justify-center text-white font-bold">
+      BR
+    </div>
+    <div>
+      <p class="text-white font-medium">Bob Reilly</p>
+      <p class="text-zinc-400 text-sm">Senior Software Engineer at Peraton, MIT SMME '81 & SBME '79. Specializes in enterprise software architecture, cloud migration, and AI assistant integrations. TS/SCI cleared.</p>
+    </div>
+  </div>
 </div>
     `
   },

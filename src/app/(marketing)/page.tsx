@@ -179,17 +179,16 @@ export default function HomePage() {
 
       <section className="px-4 sm:px-6 lg:px-8 py-24">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-bold text-white">From the Blog</h2>
-              <p className="text-zinc-500 mt-1">Thoughts on design, process, and craft.</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link href="/blog/featured" className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium transition-colors">
-                Featured
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white">From the Blog</h2>
+            <p className="text-zinc-500 mt-1 mb-6">Thoughts on design, process, and craft.</p>
+            <div className="flex items-center justify-center gap-4">
+              <Link href="/blog/featured" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-medium transition-all hover:scale-105 shadow-lg hover:shadow-violet-500/25">
+                <Bot size={16} />
+                Featured Posts
               </Link>
-              <Link href="/blog" className="text-violet-400 hover:text-violet-300 text-sm flex items-center gap-1 transition-colors">
-                All posts <ArrowRight size={14} />
+              <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-medium transition-all hover:scale-105 shadow-lg hover:shadow-zinc-500/25 border border-zinc-700">
+                All Posts <ArrowRight size={16} />
               </Link>
             </div>
           </div>

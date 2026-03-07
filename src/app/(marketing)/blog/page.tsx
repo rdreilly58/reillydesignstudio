@@ -36,16 +36,6 @@ export default function BlogPage() {
         
         <h1 className="text-4xl font-bold text-white mb-4">All Posts</h1>
         <p className="text-zinc-400 text-lg">Thoughts on design, AI, embedded systems, and building things that work.</p>
-        
-        {/* Navigation buttons */}
-        <div className="flex items-center gap-3 mt-8">
-          <Link href="/blog/featured" className="text-violet-400 hover:text-violet-300 text-sm flex items-center gap-1 transition-colors">
-            Featured
-          </Link>
-          <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-violet-600 text-white text-sm font-medium">
-            All posts
-          </div>
-        </div>
       </div>
 
       {/* Featured Section */}

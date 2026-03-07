@@ -55,16 +55,6 @@ export default function FeaturedBlogPage() {
         
         <h1 className="text-4xl font-bold text-white mb-4">Featured Posts</h1>
         <p className="text-zinc-400 text-lg">Our most popular and impactful content on AI, security, and technical implementation.</p>
-        
-        {/* Navigation buttons */}
-        <div className="flex items-center gap-3 mt-8">
-          <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-violet-600 text-white text-sm font-medium">
-            Featured
-          </div>
-          <Link href="/blog" className="text-violet-400 hover:text-violet-300 text-sm flex items-center gap-1 transition-colors">
-            All posts <ArrowRight size={14} />
-          </Link>
-        </div>
       </div>
 
       {/* Featured Posts Grid */}

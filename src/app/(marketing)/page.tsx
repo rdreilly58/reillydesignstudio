@@ -204,9 +204,14 @@ export default function HomePage() {
               <h2 className="text-3xl font-bold text-white">From the Blog</h2>
               <p className="text-zinc-500 mt-1">Thoughts on design, process, and craft.</p>
             </div>
-            <Link href="/blog" className="text-violet-400 hover:text-violet-300 text-sm flex items-center gap-1 transition-colors">
-              All posts <ArrowRight size={14} />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link href="/blog/featured" className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium transition-colors">
+                Featured
+              </Link>
+              <Link href="/blog" className="text-violet-400 hover:text-violet-300 text-sm flex items-center gap-1 transition-colors">
+                All posts <ArrowRight size={14} />
+              </Link>
+            </div>
           </div>
           <div className="divide-y divide-zinc-800">
             {recentPosts.map((post) => (

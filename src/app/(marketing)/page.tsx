@@ -45,29 +45,7 @@ const services = [
   },
 ];
 
-const recentPosts = [
-  {
-    title: "What Is OpenClaw and How to Set It Up",
-    date: "Mar 2026",
-    tag: "AI",
-    slug: "what-is-openclaw",
-  },
-  {
-    title: "How to Add AI to Your Small Business in 2026",
-    date: "Mar 2026",
-    tag: "AI",
-    slug: "ai-for-small-business",
-  },
-  {
-    title: "RAG Pipelines Explained for Business Owners",
-    date: "Mar 2026",
-    tag: "AI",
-    slug: "rag-pipelines-explained",
-  },
-  { title: "The Art of Embedded Board Bring-Up", date: "Mar 2026", tag: "Embedded", slug: "embedded-board-bring-up" },
-  { title: "Why White Space Is the Most Underrated Design Tool", date: "Feb 2026", tag: "Design Theory", slug: "white-space-design" },
-  { title: "Building a Design System from Scratch in 2026", date: "Jan 2026", tag: "Process", slug: "design-system-2026" },
-];
+
 
 const testimonials = [
   {
@@ -197,38 +175,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-8 py-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-bold text-white">From the Blog</h2>
-              <p className="text-zinc-500 mt-1">Thoughts on design, process, and craft.</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link href="/blog/featured" className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium transition-colors">
-                Featured
-              </Link>
-              <Link href="/blog" className="text-violet-400 hover:text-violet-300 text-sm flex items-center gap-1 transition-colors">
-                All posts <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
-          <div className="divide-y divide-zinc-800">
-            {recentPosts.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex items-center justify-between py-6 hover:bg-zinc-900/50 -mx-4 px-4 rounded-xl transition-colors">
-                <div>
-                  <span className="text-xs text-violet-400 font-medium">{post.tag}</span>
-                  <h3 className="text-white font-medium mt-1 group-hover:text-violet-300 transition-colors">{post.title}</h3>
-                </div>
-                <div className="flex items-center gap-4 text-zinc-500 text-sm shrink-0 ml-8">
-                  <span>{post.date}</span>
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       <section className="px-4 sm:px-6 lg:px-8 py-24">
         <div className="max-w-4xl mx-auto text-center bg-gradient-to-b from-violet-950/40 to-zinc-900 rounded-3xl border border-violet-900/30 p-16">

@@ -178,6 +178,25 @@ export default function HomePage() {
 
 
       <section className="px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-end justify-between mb-12">
+            <div>
+              <h2 className="text-3xl font-bold text-white">From the Blog</h2>
+              <p className="text-zinc-500 mt-1">Thoughts on design, process, and craft.</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <Link href="/blog/featured" className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium transition-colors">
+                Featured
+              </Link>
+              <Link href="/blog" className="text-violet-400 hover:text-violet-300 text-sm flex items-center gap-1 transition-colors">
+                All posts <ArrowRight size={14} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-6 lg:px-8 py-24">
         <div className="max-w-4xl mx-auto text-center bg-gradient-to-b from-violet-950/40 to-zinc-900 rounded-3xl border border-violet-900/30 p-16">
           <Pen className="mx-auto text-violet-400 mb-5" size={36} />
           <h2 className="text-4xl font-bold text-white">Have a project in mind?</h2>

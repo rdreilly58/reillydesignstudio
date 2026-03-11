@@ -1,0 +1,12 @@
+# Stripe + OAuth Environment Variables Deployment
+
+Date: Wednesday, March 11, 2026, 3:50 PM EDT
+Status: Environment variables added to AWS Amplify
+
+STRIPE_SECRET_KEY: ✅ Added
+STRIPE_WEBHOOK_SECRET: ✅ Added
+GOOGLE_CLIENT_ID: ✅ Added
+GOOGLE_CLIENT_SECRET: ✅ Added
+NEXTAUTH_URL: ✅ Added
+
+This marker triggers a rebuild with the new environment variables.

@@ -18,6 +18,7 @@
     "@react-pdf/renderer": "^4.3.2",
     "@stripe/stripe-js": "^8.8.0",
     "@types/qrcode": "^1.5.6",
+    "aws-amplify": "^6.16.3",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.575.0",
@@ -36,14 +37,20 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@aws-amplify/backend": "^1.21.1",
+    "@aws-amplify/backend-cli": "^1.8.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.11",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "aws-cdk-lib": "^2.234.1",
+    "constructs": "^10.5.1",
+    "esbuild": "^0.27.4",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

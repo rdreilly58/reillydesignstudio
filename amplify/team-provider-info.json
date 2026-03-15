@@ -1,15 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-reillydesignstudio-dev-4639a-authRole",
-      "UnauthRoleArn": "arn:aws:iam::053677584823:role/amplify-reillydesignstudio-dev-4639a-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::053677584823:role/amplify-reillydesignstudio-dev-4639a-authRole",
+      "AuthRoleName": "amplify-reillydesignstudio-dev-4adcf-authRole",
+      "UnauthRoleArn": "arn:aws:iam::053677584823:role/amplify-reillydesignstudio-dev-4adcf-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::053677584823:role/amplify-reillydesignstudio-dev-4adcf-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-reillydesignstudio-dev-4639a-deployment",
-      "UnauthRoleName": "amplify-reillydesignstudio-dev-4639a-unauthRole",
-      "StackName": "amplify-reillydesignstudio-dev-4639a",
-      "StackId": "arn:aws:cloudformation:us-east-1:053677584823:stack/amplify-reillydesignstudio-dev-4639a/64578690-2056-11f1-8ff4-0afff7e082cf",
-      "AmplifyAppId": "d1bgupb7k8e9nh"
+      "DeploymentBucketName": "amplify-reillydesignstudio-dev-4adcf-deployment",
+      "UnauthRoleName": "amplify-reillydesignstudio-dev-4adcf-unauthRole",
+      "StackName": "amplify-reillydesignstudio-dev-4adcf",
+      "StackId": "arn:aws:cloudformation:us-east-1:053677584823:stack/amplify-reillydesignstudio-dev-4adcf/3fe115d0-2059-11f1-8568-0ef3b8cad441",
+      "AmplifyAppId": "d28no05z4m6sol"
     }
   }
 }

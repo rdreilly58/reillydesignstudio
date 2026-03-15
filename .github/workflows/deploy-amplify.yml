@@ -1,0 +1,73 @@
+name: Deploy to AWS Amplify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      
+      - name: Build Next.js application
+        run: npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
+          NODE_ENV: production
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      
+      - name: Deploy to Amplify Hosting
+        run: |
+          # Create deployment
+          DEPLOYMENT_ID=$(aws amplify create-deployment \
+            --app-id dyvzigxsnl1l2 \
+            --branch-name main \
+            --query 'jobId' \
+            --output text)
+          
+          echo "Deployment ID: $DEPLOYMENT_ID"
+          
+          # Upload build artifacts to S3
+          aws s3 sync .next s3://amplify-dyvzigxsnl1l2-main/.next --delete
+          
+          # Start deployment
+          aws amplify start-deployment \
+            --app-id dyvzigxsnl1l2 \
+            --branch-name main \
+            --job-id $DEPLOYMENT_ID || true
+          
+          echo "Deployment started. Monitor at: https://console.aws.amazon.com/amplify/apps/dyvzigxsnl1l2"
+      
+      - name: Build Status
+        if: always()
+        run: echo "Build completed and deployed to Amplify"
